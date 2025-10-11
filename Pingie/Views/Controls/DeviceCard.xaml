@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Pingie.Data.Models;assembly=Data"
+             xmlns:control="clr-namespace:Pingie.Maui.Views.Control"
+             x:Class="Pingie.Maui.Views.Control.DeviceCard">
+    
+    <Border x:DataType="model:Device"
+            StrokeShape="RoundRectangle 8"
+            Padding="10">
+        
+        <Grid ColumnDefinitions="Auto, *,Auto" RowDefinitions="Auto, Auto">
+            <control:PingStatusBadge 
+                Grid.Row="0" Grid.Column="0"
+                Status="{Binding Status}"
+                Margin="0,0,5,0"/>
+            <Label Grid.Row="0" Grid.Column="1"
+                   Text="{Binding Name}"
+                   FontSize="18"
+                   FontAttributes="Bold"/>
+            <Label Grid.Row="0" Grid.Column="2"
+                   Text="{Binding Status}"
+                   FontSize="12"/>
+            
+            <Label Grid.Row="2" Grid.Column="1"
+                   Text="{Binding IpAddress}"
+                   FontSize="12"/>
+        </Grid>
+    </Border>
+</ContentView>
