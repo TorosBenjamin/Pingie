@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SkiaSharp.Extended.Svg;
+using SkiaSharp.Views.Maui;
 
 namespace Pingie.Maui.Views;
 
-public partial class DevicePage : Microsoft.Maui.Controls.ContentPage
+public partial class NavigationBar : ContentView
 {
-    public DevicePage()
+    private SKSvg icon;
+    
+    public NavigationBar()
     {
         InitializeComponent();
     }

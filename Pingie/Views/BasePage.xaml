@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Pingie.Maui.Views"
+             x:Class="Pingie.Maui.Views.BasePage">
+
+    <Grid RowDefinitions="Auto,*">
+        <views:NavigationBar Grid.Row="0"/>
+        <Border Grid.Row="1"
+                StrokeThickness="0"
+                Stroke="Transparent"
+                Content="{Binding CurrentPageContent}"/>
+    </Grid>
+</ContentPage>

@@ -4,6 +4,7 @@ using Pingie.Shared.Enums;
 using Pingie.Data.Models.Util;
 using Pingie.Shared;
 using Pingie.Shared.Utils;
+using Device = Pingie.Data.Models.Device;
 using Service = Pingie.Data.Models.Service;
 using Timer = System.Timers.Timer;
 

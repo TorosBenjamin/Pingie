@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Pingie.Data;
 using Pingie.Shared.Utils;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace Pingie;
 
@@ -10,7 +11,7 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        var builder = MauiApp.CreateBuilder();
+        var builder = MauiApp.CreateBuilder().UseSkiaSharp();
         builder
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>

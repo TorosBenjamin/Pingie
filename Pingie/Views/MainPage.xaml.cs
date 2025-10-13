@@ -1,13 +1,13 @@
 ﻿using Pingie.Maui.ViewModels;
+using Pingie.Shared.Utils;
 
 namespace Pingie.Maui.Views;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage(MainViewModel mainViewModel, NavigationService navigationService)
+    public MainPage()
     {
         InitializeComponent();
-        BindingContext = mainViewModel;
-        navigationService.Initialize(Navigation);
+        BindingContext = ServiceHelper.GetService<MainViewModel>();;
     }
 }

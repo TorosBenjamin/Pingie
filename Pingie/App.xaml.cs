@@ -1,4 +1,6 @@
-﻿namespace Pingie;
+﻿using Pingie.Maui.Views;
+
+namespace Pingie;
 
 public partial class App : Microsoft.Maui.Controls.Application
 {

@@ -10,6 +10,18 @@
       <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
         <HintPath>..\..\..\..\..\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\9.0.9\lib\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
       </Reference>
+      <Reference Include="Microsoft.Maui.Controls">
+        <HintPath>..\..\..\..\..\.nuget\packages\microsoft.maui.controls.core\9.0.100\lib\net9.0-android35.0\Microsoft.Maui.Controls.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Maui.Graphics">
+        <HintPath>..\..\..\..\..\.nuget\packages\microsoft.maui.graphics\9.0.100\lib\net9.0-android35.0\Microsoft.Maui.Graphics.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SkiaSharp" Version="3.119.1" />
+      <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+      <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.1" />
     </ItemGroup>
 
 </Project>

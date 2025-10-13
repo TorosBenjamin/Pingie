@@ -3,7 +3,7 @@ using Pingie.Shared.Utils;
 
 namespace Pingie.Maui.Views;
 
-public partial class PingableLogPage : ContentPage
+public partial class PingableLogPage : Microsoft.Maui.Controls.ContentPage
 {
     public PingableLogPage(PingableLogViewModel viewModel)
     {
