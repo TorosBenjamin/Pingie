@@ -4,15 +4,13 @@
              xmlns:contol="clr-namespace:Pingie.Maui.Views.Control"
              xmlns:view="clr-namespace:Pingie.Maui.Views"
              x:Class="Pingie.Maui.Views.MainPage">
-
-    
     <ScrollView>
         <VerticalStackLayout
             Padding="10, 0, 10, 0"
             Spacing="10">
             <Label Text="Devices"
                    HorizontalTextAlignment="Start"
-                   FontSize="20"
+                   FontSize="22"
                    FontAttributes="Bold"/>
             <CollectionView ItemsSource="{Binding Devices}"
                             SelectionMode="None">
@@ -31,5 +29,4 @@
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

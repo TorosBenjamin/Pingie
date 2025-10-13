@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SkiaSharp.Extended.Svg;
-using SkiaSharp.Views.Maui;
+using Svg.Skia;
 
 namespace Pingie.Maui.Views;
 

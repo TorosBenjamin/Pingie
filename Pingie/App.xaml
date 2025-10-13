@@ -7,11 +7,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                <ResourceDictionary Source="Resources/Styles/ColorsDark.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
-            <Color x:Key="NavbarBackgroundColorLight"></Color>
-            <Color x:Key="NavBarBackgroundColorDark">#37353E</Color>
-            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

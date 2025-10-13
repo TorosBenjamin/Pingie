@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:shared-Util="clr-namespace:Pingie.Shared.Utils;assembly=Shared"
+             xmlns:utils="clr-namespace:Pingie.Utils"
              x:Class="Pingie.Maui.Views.NavigationBar">
     <Border
         StrokeThickness="0"
         Stroke="Transparent"
-        BackgroundColor="DimGray">
-        
-        <Border.StrokeShape>
-            <RoundRectangle CornerRadius="0,0,10,10"/>
-        </Border.StrokeShape>
-        
+        BackgroundColor="{DynamicResource NavigationBarBackground}"
+        StrokeShape="RoundRectangle 0,0,10,10"
+        Padding="10">
         <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto">
-            <Label Grid.Column="0"
-                   Text="+" />
-            <shared-Util:SvgImage Grid.Column="2"
+            <utils:SvgImage Grid.Column="0"
+                Source="plus.svg"
+                IsIcon="True"
+                WidthRequest="20"
+                HeightRequest="20"
+                TintColor="{DynamicResource SecondaryText}"/>
+            
+            <utils:SvgImage Grid.Column="2"
                                   Source="appicondp.svg"
-                                  WidthRequest="50"
-                                  HeightRequest="50"/>
+                                  WidthRequest="30"
+                                  HeightRequest="30"/>
         </Grid>
     </Border>
 </ContentView>
