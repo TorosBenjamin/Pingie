@@ -1,4 +1,5 @@
 ﻿using Pingie.Maui.Views;
+using Pingie.Shared.Utils;
 
 namespace Pingie;
 
@@ -27,6 +28,6 @@ public partial class App : Microsoft.Maui.Controls.Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Window(new AppShell());
+        return new Window(ServiceHelper.GetService<BasePage>());
     }
 }

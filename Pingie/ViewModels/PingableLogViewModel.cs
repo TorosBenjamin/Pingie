@@ -7,23 +7,22 @@ using Pingie.Shared.Utils;
 namespace Pingie.Maui.ViewModels;
 
 [Transient]
-public class PingableLogViewModel
+public class PingableLogViewModel(PingResultService pingResultService)
 {
-    private readonly ObservableCollection<PingResult> _logs = new ObservableCollection<PingResult>();
+    public ObservableCollection<PingResult> Logs { get; } = new();
     
-    private readonly PingResultService _pingResultService;
-    private readonly IPingable _pingable;
+    public IPingable Pingable { get; private set; } = null!;
 
-    public PingableLogViewModel(IPingable pingable, PingResultService pingResultService)
+    public void Initialize(IPingable pingable)
     {
-        _pingResultService = pingResultService;
-        _pingable = pingable;
+        Pingable = pingable;
         LoadLogsAsync();
     }
     
     private async void LoadLogsAsync()
     {
-        var results = await _pingResultService.GetAllPingResultByPingableId(_pingable.Id);
+        if(Pingable == null) return;
+        var results = await pingResultService.GetAllPingResultByPingableId(Pingable.Id);
         
         MainThread.BeginInvokeOnMainThread(() =>
         {
@@ -34,6 +33,4 @@ public class PingableLogViewModel
             }
         });
     }
-
-    public ObservableCollection<PingResult> Logs => _logs;
 }

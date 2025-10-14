@@ -3,11 +3,12 @@ using Pingie.Shared.Utils;
 
 namespace Pingie.Maui.Views;
 
-public partial class MainPage : ContentPage
+[Transient]
+public partial class MainPage : ContentView
 {
     public MainPage()
     {
+        
         InitializeComponent();
-        BindingContext = ServiceHelper.GetService<MainViewModel>();;
     }
 }

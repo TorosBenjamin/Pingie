@@ -3,13 +3,11 @@ using Pingie.Shared.Utils;
 
 namespace Pingie.Maui.Views;
 
-public partial class PingableLogPage : Microsoft.Maui.Controls.ContentPage
+[Transient]
+public partial class PingableLogPage : ContentView
 {
-    public PingableLogPage(PingableLogViewModel viewModel)
+    public PingableLogPage()
     {
         InitializeComponent();
-        BindingContext = viewModel;
-        
-        ServiceHelper.GetService<NavigationService>().Initialize(Navigation);
     }
 }

@@ -13,7 +13,7 @@ public class MainViewModel
     private readonly MonitorService _monitor;
     private readonly NavigationService _navigation;
     private readonly DeviceRepository _deviceRepository;
-    private readonly ObservableCollection<Device> _devices = new ObservableCollection<Device>();
+    private readonly ObservableCollection<Device> _devices = new();
     
     public ICommand DeviceTappedCommand { get; }
 
@@ -32,15 +32,15 @@ public class MainViewModel
     private async Task LoadAllDevicesAsync()
     {
         var devices = await _deviceRepository.GetAllAsync();
-        devices.ForEach(d => _devices.Add(d));
+        devices.ForEach(d => AddDevice(d));
     }
 
     private async void AddDevice(Device device)
     {
-        await _deviceRepository.InsertAsync(device);
         _devices.Add(device);
         _monitor.StartMonitoring(device);
     }
+    
     private async void OnDeviceTapped(Device device)
     {
         if (device == null) return;

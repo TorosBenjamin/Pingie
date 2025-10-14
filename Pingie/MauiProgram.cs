@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Pingie.Data;
@@ -11,21 +12,7 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        var builder = MauiApp.CreateBuilder().UseSkiaSharp();
-        builder
-            .UseMauiApp<App>()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });
-
-        // Initialize database
-        var dataBasePath = Path.Combine(FileSystem.AppDataDirectory, "pingie.db");
-        builder.Services.AddDbContext<AppDbContext>(options =>
-        {
-            options.UseSqlite($"Data Source={dataBasePath}");
-        });
+        var builder = MauiApp.CreateBuilder();
         
         // Force load assemblies
         var assemblyNames = new[]
@@ -60,7 +47,23 @@ public static class MauiProgram
                 .AddSingletonInjections(asm)
                 .AddTransientInjections(asm);
         }
+        
+        builder
+            .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
+            .UseSkiaSharp()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
+        // Initialize database
+        var dataBasePath = Path.Combine(FileSystem.AppDataDirectory, "pingie.db");
+        builder.Services.AddDbContext<AppDbContext>(options =>
+        {
+            options.UseSqlite($"Data Source={dataBasePath}");
+        });
         
 #if DEBUG
         builder.Logging.AddDebug();

@@ -18,15 +18,15 @@ public static class InjectionRegistration
 
         foreach (var type in singletonTypes)
         {
-            var interfaceType = type.GetInterfaces().FirstOrDefault();
+            var interfaceType = type.GetInterfaces()
+                .FirstOrDefault(i => 
+                    !i.Namespace.StartsWith("Microsoft") 
+                    && !i.Namespace.StartsWith("System"));
+
             if (interfaceType != null)
-            {
                 services.AddSingleton(interfaceType, type);
-            }
             else
-            {
                 services.AddSingleton(type);
-            }
         }
 
         return services;
@@ -39,15 +39,15 @@ public static class InjectionRegistration
 
         foreach (var type in transientTypes)
         {
-            var interfaceType = type.GetInterfaces().FirstOrDefault();
+            var interfaceType = type.GetInterfaces()
+                .FirstOrDefault(i => 
+                    !i.Namespace.StartsWith("Microsoft") 
+                    && !i.Namespace.StartsWith("System"));
+
             if (interfaceType != null)
-            {
-                services.AddTransient(interfaceType, type);
-            }
+                services.AddSingleton(interfaceType, type);
             else
-            {
-                services.AddTransient(type);
-            }
+                services.AddSingleton(type);
         }
 
         return services;

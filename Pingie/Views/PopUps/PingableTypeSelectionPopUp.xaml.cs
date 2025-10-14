@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pingie.Maui.Views;
+namespace Pingie.Views.PopUps;
 
-public partial class DevicePage : ContentView
+public partial class PingableTypeSelectionPopUp : ContentView
 {
-    public DevicePage()
+    public PingableTypeSelectionPopUp()
     {
         InitializeComponent();
     }
