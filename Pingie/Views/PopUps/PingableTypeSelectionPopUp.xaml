@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mopups:PopupPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    x:Class="Pingie.Views.PopUps.PingableTypeSelectionPopUp"
+    CloseWhenBackgroundIsClicked="True"
+    BackgroundColor="Transparent">
+    
+    <Border StrokeShape="RoundRectangle 5,10,10,10" 
+            Stroke="{DynamicResource PrimaryText}"
+            Padding="25,15"
+            BackgroundColor="{DynamicResource Background}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+        
+        <Grid RowDefinitions="Auto, Auto, Auto" RowSpacing="10">
+            <Label Text="Device"
+                   TextColor="{DynamicResource PrimaryText}"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   Padding="5, 0"
+                   Grid.Row="0" />
+            <BoxView Grid.Row="1"
+                     HeightRequest="0.5"
+                     BackgroundColor="{DynamicResource SecondaryText}"
+                     HorizontalOptions="Fill"
+            />
+            <Label Text="Service"
+                   TextColor="{DynamicResource PrimaryText}"
+                   HorizontalOptions="Center"
+                   FontSize="16"
+                   Padding="5, 0"
+                   Grid.Row="2" />
+        </Grid>
+    </Border>
+</mopups:PopupPage>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pingie.Maui.Views;
 
-public partial class DevicePage : ContentPage
+public partial class DevicePage : ContentView
 {
     public DevicePage()
     {

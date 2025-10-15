@@ -3,6 +3,7 @@ using Pingie.Data.Models;
 using Pingie.Maui.Services.Interface;
 using Pingie.Shared.Utils;
 using Pingie.Shared.Enums;
+using Device = Pingie.Data.Models.Device;
 
 namespace Pingie.Maui.Services;
 

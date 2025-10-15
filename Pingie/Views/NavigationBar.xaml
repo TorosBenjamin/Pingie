@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utils="clr-namespace:Pingie.Utils"
+             x:Class="Pingie.Maui.Views.NavigationBar">
+    <Border
+        StrokeThickness="0"
+        Stroke="Transparent"
+        BackgroundColor="{DynamicResource NavigationBarBackground}"
+        StrokeShape="RoundRectangle 0,0,10,10"
+        Padding="10">
+        <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto">
+            <utils:SvgImage x:Name="CommandIcon"
+                            Source="plus.svg"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            IsIcon="True"
+                            TintColor="{DynamicResource PrimaryText}">
+                <utils:SvgImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnCommandTapped}" />
+                </utils:SvgImage.GestureRecognizers>
+            </utils:SvgImage>
+            <utils:SvgImage Grid.Column="2"
+                            Source="appicondp.svg"
+                            WidthRequest="30"
+                            HeightRequest="30"/>
+        </Grid>
+    </Border>
+</ContentView>

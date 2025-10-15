@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net9.0-android</TargetFrameworks>
+        <TargetFrameworks>net9.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
@@ -9,6 +9,12 @@
     <ItemGroup>
       <ProjectReference Include="..\Data\Data.csproj" />
       <ProjectReference Include="..\Shared\Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Maui.Controls">
+        <HintPath>..\..\..\..\..\.nuget\packages\microsoft.maui.controls.core\9.0.100\lib\net9.0-android35.0\Microsoft.Maui.Controls.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

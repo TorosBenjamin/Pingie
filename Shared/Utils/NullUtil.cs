@@ -1,4 +1,4 @@
-namespace Pingie.Shared;
+namespace Pingie.Shared.Utils;
 
 public static class NullExtensions
 {
