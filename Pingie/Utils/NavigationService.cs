@@ -1,4 +1,5 @@
 using AndroidX.Lifecycle;
+using Pingie.Interfaces;
 using Pingie.Maui.Services;
 using Pingie.Maui.ViewModels;
 using Pingie.Maui.Views;
@@ -11,7 +12,7 @@ namespace Pingie.Maui;
 public class NavigationService
 {
     private static readonly Stack<View> _pageStack = new();
-    public BasePage BasePage { get; set; }
+    public IBasePage BasePage { get; set; }
 
     public async Task NavigateToLogPage(IPingable pingable)
     {

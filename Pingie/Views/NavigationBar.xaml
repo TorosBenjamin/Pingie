@@ -10,17 +10,20 @@
         StrokeShape="RoundRectangle 0,0,10,10"
         Padding="10">
         <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto">
-            <utils:SvgImage Grid.Column="0"
-                Source="plus.svg"
-                IsIcon="True"
-                WidthRequest="20"
-                HeightRequest="20"
-                TintColor="{DynamicResource SecondaryText}"/>
-            
+            <utils:SvgImage x:Name="CommandIcon"
+                            Source="plus.svg"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            IsIcon="True"
+                            TintColor="{DynamicResource PrimaryText}">
+                <utils:SvgImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnCommandTapped}" />
+                </utils:SvgImage.GestureRecognizers>
+            </utils:SvgImage>
             <utils:SvgImage Grid.Column="2"
-                                  Source="appicondp.svg"
-                                  WidthRequest="30"
-                                  HeightRequest="30"/>
+                            Source="appicondp.svg"
+                            WidthRequest="30"
+                            HeightRequest="30"/>
         </Grid>
     </Border>
 </ContentView>

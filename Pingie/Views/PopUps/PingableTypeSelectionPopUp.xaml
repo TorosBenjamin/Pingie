@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pingie.Views.PopUps.PingableTypeSelectionPopUp">
-    <Border StrokeShape="RoundRectangle 10,20,20,20">
-        <Grid RowDefinitions="Auto, Auto, Auto">
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:popUps="clr-namespace:Pingie.Views.PopUps"
+    x:Class="Pingie.Views.PopUps.PingableTypeSelectionPopUp"
+    DesiredSize="Auto"
+    BackgroundColor="Transparent">
+    
+    <Border StrokeShape="RoundRectangle 5,10,10,10" Padding="20,10">
+        <Grid RowDefinitions="Auto, Auto, Auto" RowSpacing="5">
             <Label Text="Device"
                    TextColor="{DynamicResource PrimaryText}"
                    Grid.Row="0" />
             <BoxView Grid.Row="1"
-                     HeightRequest="1"
+                     HeightRequest="0.5"
                      BackgroundColor="{DynamicResource SecondaryText}"
                      HorizontalOptions="Fill" />
             <Label Text="Service"
@@ -17,4 +22,4 @@
                    Grid.Row="2" />
         </Grid>
     </Border>
-</ContentView>
+</toolkit:Popup>

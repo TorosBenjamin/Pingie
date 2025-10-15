@@ -1,4 +1,5 @@
-﻿using Pingie.Maui.Views;
+﻿using Pingie.Interfaces;
+using Pingie.Maui.Views;
 using Pingie.Shared.Utils;
 
 namespace Pingie;

@@ -24,9 +24,11 @@ public static class InjectionRegistration
                     && !i.Namespace.StartsWith("System"));
 
             if (interfaceType != null)
+            {
                 services.AddSingleton(interfaceType, type);
-            else
-                services.AddSingleton(type);
+            }
+            services.AddSingleton(type);
+                
         }
 
         return services;
@@ -43,11 +45,12 @@ public static class InjectionRegistration
                 .FirstOrDefault(i => 
                     !i.Namespace.StartsWith("Microsoft") 
                     && !i.Namespace.StartsWith("System"));
-
+            
             if (interfaceType != null)
+            {
                 services.AddSingleton(interfaceType, type);
-            else
-                services.AddSingleton(type);
+            }
+            services.AddSingleton(type);
         }
 
         return services;

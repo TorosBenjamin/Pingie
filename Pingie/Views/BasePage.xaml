@@ -5,16 +5,15 @@
              x:Class="Pingie.Maui.Views.BasePage">
 
     <Grid RowDefinitions="Auto,*">
-        <views:NavigationBar Grid.Row="0"
-                             Content="{x:Static views:BasePage.NavigationBar}"
-                             ZIndex="2"/>
-        <ContentView
-            Grid.Row="1"
-            Margin="0,-8,0,0"
-            Padding="0, 18, 0, 0"
-            BackgroundColor="{DynamicResource Background}"
-            Content="{Binding CurrentPageContent}" 
-            ZIndex="1"/>
+        <ContentView Grid.Row="0"
+                     Content="{x:Static views:BasePage.NavigationBar}"
+                     ZIndex="2"/>
+        <ContentView Grid.Row="1"
+                     Margin="0,-8,0,0"
+                     Padding="0, 18, 0, 0"
+                     BackgroundColor="{DynamicResource Background}"
+                     Content="{Binding CurrentPageContent}" 
+                     ZIndex="1"/>
     </Grid>
     
 </ContentPage>

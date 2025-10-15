@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Maui.Views;
+using ExCSS;
+using Pingie.Shared.Utils;
 
 namespace Pingie.Views.PopUps;
 
-public partial class PingableTypeSelectionPopUp : ContentView
+[Singleton]
+public partial class PingableTypeSelectionPopUp : Popup
 {
     public PingableTypeSelectionPopUp()
     {
