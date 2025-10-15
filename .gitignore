@@ -1,0 +1,33 @@
+# Build artifacts
+[Bb]in/
+[Oo]bj/
+*.user
+*.userosscache
+*.cache
+*.nupkg
+
+# MAUI-specific
+*.android/
+*.ios/
+*.maccatalyst/
+*.tvos/
+*.watchos/
+
+# Rider/IDE files
+.idea/
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+*.vspscc
+*.vssscc
+
+# NuGet
+packages/
+*.nupkg
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+/Debug/

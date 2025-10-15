@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:contol="clr-namespace:Pingie.Maui.Views.Control"
+             xmlns:view="clr-namespace:Pingie.Maui.Views"
+             x:Class="Pingie.Maui.Views.MainPage">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="10, 0, 10, 0"
+            Spacing="10">
+            <Label Text="Devices"
+                   HorizontalTextAlignment="Start"
+                   FontSize="22"
+                   TextColor="{DynamicResource PrimaryText}"
+                   FontAttributes="Bold"/>
+            <CollectionView ItemsSource="{Binding Devices}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type view:MainPage}}, Path=BindingContext.DeviceTappedCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+                            <contol:DeviceCard />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>
