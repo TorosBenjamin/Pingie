@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
+using Mopups.Pages;
+using Mopups.Services;
 using Pingie.Interfaces;
 using Pingie.Maui.ViewModels;
 using Pingie.Shared.Utils;
@@ -21,11 +23,6 @@ public partial class BasePage : ContentPage, IBasePage
             nameof(CurrentPageContent),
             typeof(View),
             typeof(BasePage));
-
-    public void CreatePopup(Popup popup)
-    {
-        this.ShowPopup(popup);
-    }
 
     public View CurrentPageContent
     {

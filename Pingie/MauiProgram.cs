@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Mopups.Hosting;
 using Pingie.Data;
 using Pingie.Shared.Utils;
 using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -51,6 +52,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
+            .ConfigureMopups()
             .UseSkiaSharp()
             .ConfigureFonts(fonts =>
             {

@@ -1,9 +1,9 @@
 using CommunityToolkit.Maui.Views;
+using Mopups.Pages;
 
 namespace Pingie.Interfaces;
 
 public interface IBasePage
 {
-    public void CreatePopup(Popup popup);
     public View CurrentPageContent {get;set;}
 }
