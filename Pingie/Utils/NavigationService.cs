@@ -23,6 +23,15 @@ public class NavigationService
         BasePage.CurrentPageContent = page;
         _pageStack.Push(page);
     }
+
+    public async Task GoBack()
+    {
+        // Don't go back on the main page.
+        if (_pageStack.Count == 1) return;
+        _pageStack.Pop();
+        var previousPage = _pageStack.Peek();
+        BasePage.CurrentPageContent = previousPage;
+    }
     
     public static async Task PushWithoutDisplay(View page)
     {

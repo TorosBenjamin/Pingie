@@ -10,13 +10,23 @@ namespace Pingie.Maui.Views;
 [Singleton]
 public partial class NavigationBar : ContentView
 {
-    private readonly NavigationService _navigationService;
-    public ICommand OnCommandTapped { get; private set; }
+    private readonly NavigationService _navigation;
+    public static readonly BindableProperty OnCommandTappedProperty =
+        BindableProperty.Create(
+            nameof(OnCommandTapped),
+            typeof(ICommand),
+            typeof(NavigationBar));
+
+    public ICommand OnCommandTapped
+    {
+        get => (ICommand)GetValue(OnCommandTappedProperty);
+        private set => SetValue(OnCommandTappedProperty, value);
+    }
     
     public NavigationBar(NavigationService navigationService)
     {
         InitializeComponent();
-        _navigationService = navigationService;
+        _navigation = navigationService;
         ChangeCommandToAdd();
         BindingContext = this;
     }
@@ -30,7 +40,7 @@ public partial class NavigationBar : ContentView
     public void ChangeCommandToBack()
     {
         CommandIcon.Source = "backarrow.svg";
-        OnCommandTapped = new Command(OnCommandPressedActionAdd);
+        OnCommandTapped = new Command(OnCommandPressedActionBack);
     }
 
     private void OnCommandPressedActionAdd()
@@ -49,6 +59,6 @@ public partial class NavigationBar : ContentView
 
     private async void OnCommandPressedActionBack()
     {
-        // Goes back to the previous page.
+        _navigation.GoBack();
     }
 }

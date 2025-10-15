@@ -11,6 +11,7 @@
             <Label Text="Devices"
                    HorizontalTextAlignment="Start"
                    FontSize="22"
+                   TextColor="{DynamicResource PrimaryText}"
                    FontAttributes="Bold"/>
             <CollectionView ItemsSource="{Binding Devices}"
                             SelectionMode="None">
