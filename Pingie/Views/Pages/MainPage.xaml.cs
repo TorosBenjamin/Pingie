@@ -1,7 +1,7 @@
 ﻿using Pingie.Maui.ViewModels;
 using Pingie.Shared.Utils;
 
-namespace Pingie.Maui.Views;
+namespace Pingie.Maui.Views.Pages;
 
 [Transient]
 public partial class MainPage : ContentView

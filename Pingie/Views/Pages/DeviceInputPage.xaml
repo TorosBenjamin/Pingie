@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Pingie.Views.Controls"
+             xmlns:utils="clr-namespace:Pingie.Utils"
+             x:Class="Pingie.Maui.Views.Pages.DeviceInputPage">
+    <ScrollView>
+        <Grid>
+            <controls:ValidatableEntry x:Name="NameEntry" Text="{Binding Name}" Placeholder="Name">
+                <controls:ValidatableEntry.ValidationAndErrors>
+                    <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.IsNotEmpty}" Error="Name is required." />
+                    <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.MaxLength20}" Error="Name max length is 20."/>
+                </controls:ValidatableEntry.ValidationAndErrors>
+            </controls:ValidatableEntry>
+            <Button Clicked="SaveButtonClicked"/>
+        </Grid>
+    </ScrollView>
+</ContentView>

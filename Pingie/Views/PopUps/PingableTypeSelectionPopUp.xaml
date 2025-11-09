@@ -9,29 +9,38 @@
     
     <Border StrokeShape="RoundRectangle 5,10,10,10" 
             Stroke="{DynamicResource PrimaryText}"
-            Padding="25,15"
+            Padding="15,15"
             BackgroundColor="{DynamicResource Background}"
             VerticalOptions="Center"
             HorizontalOptions="Center">
         
         <Grid RowDefinitions="Auto, Auto, Auto" RowSpacing="10">
-            <Label Text="Device"
-                   TextColor="{DynamicResource PrimaryText}"
-                   FontSize="16"
-                   HorizontalOptions="Center"
-                   Padding="5, 0"
-                   Grid.Row="0" />
+            <Button Grid.Row="0"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Padding="0"
+                    Margin="0"
+                    Clicked="OnAddDeviceClicked"
+                    Text="Add device >"
+                    TextColor="{DynamicResource PrimaryText}"
+                    FontSize="16"/>
+            
+
             <BoxView Grid.Row="1"
                      HeightRequest="0.5"
                      BackgroundColor="{DynamicResource SecondaryText}"
                      HorizontalOptions="Fill"
             />
-            <Label Text="Service"
-                   TextColor="{DynamicResource PrimaryText}"
-                   HorizontalOptions="Center"
-                   FontSize="16"
-                   Padding="5, 0"
-                   Grid.Row="2" />
+            
+            <Button Grid.Row="2"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Padding="0"
+                    Margin="0"
+                    Clicked="OnAddServiceClicked"
+                    Text="Add service >"
+                    TextColor="{DynamicResource PrimaryText}"
+                    FontSize="16"/>
         </Grid>
     </Border>
 </mopups:PopupPage>

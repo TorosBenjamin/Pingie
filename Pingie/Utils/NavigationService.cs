@@ -5,6 +5,8 @@ using Pingie.Maui.ViewModels;
 using Pingie.Maui.Views;
 using Pingie.Shared.Interfaces;
 using Pingie.Shared.Utils;
+using Pingie.Maui.Views.Pages;
+using Device = Pingie.Data.Models.Device;
 
 namespace Pingie.Maui;
 
@@ -20,6 +22,15 @@ public class NavigationService
         var viewModel = ServiceHelper.GetService<PingableLogViewModel>();
         page.BindingContext = viewModel;
         viewModel.Initialize(pingable);
+        BasePage.CurrentPageContent = page;
+        _pageStack.Push(page);
+    }
+
+    public async Task NavigateToDeviceInputPage(Device? device)
+    {
+        var page = ServiceHelper.GetService<DeviceInputPage>();
+        var viewModel = ServiceHelper.GetService<DeviceInputViewModel>();
+        viewModel.Initialize(device);
         BasePage.CurrentPageContent = page;
         _pageStack.Push(page);
     }

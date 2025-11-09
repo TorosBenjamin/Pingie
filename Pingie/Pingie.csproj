@@ -29,6 +29,8 @@
     <EmbeddedResource Include="Resources\Images\Icons\backarrow.svg" />
     <None Remove="Resources\Images\Icons\plus.svg" />
     <EmbeddedResource Include="Resources\Images\Icons\plus.svg" />
+    <None Remove="Resources\Images\Icons\exclamation.svg" />
+    <EmbeddedResource Include="Resources\Images\Icons\exclamation.svg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Maui" Version="12.2.0" />

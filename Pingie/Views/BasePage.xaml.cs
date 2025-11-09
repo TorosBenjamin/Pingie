@@ -1,14 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Maui.Extensions;
-using CommunityToolkit.Maui.Views;
-using Mopups.Pages;
-using Mopups.Services;
 using Pingie.Interfaces;
 using Pingie.Maui.ViewModels;
+using Pingie.Maui.Views.Pages;
 using Pingie.Shared.Utils;
 
 namespace Pingie.Maui.Views;

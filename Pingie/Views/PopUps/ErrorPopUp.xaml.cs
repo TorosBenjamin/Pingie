@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pingie.Maui.Views.Pages;
+namespace Pingie.Views.PopUps;
 
-public partial class DevicePage : ContentView
+public partial class ErrorPopUp : ContentView
 {
-    public DevicePage()
+    public ErrorPopUp()
     {
         InitializeComponent();
     }

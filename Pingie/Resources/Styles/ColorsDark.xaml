@@ -11,4 +11,6 @@
     <Color x:Key="PrimaryText">#E0E0E0</Color>
     <Color x:Key="SecondaryText">#A0A0A0</Color>
     <Color x:Key="Icons">#B0B0B0</Color>
+    
+    <Color x:Key="Error">#bf2a01</Color>
 </ResourceDictionary>
