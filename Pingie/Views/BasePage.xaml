@@ -9,7 +9,7 @@
                      Content="{x:Static views:BasePage.NavigationBar}"
                      ZIndex="2"/>
         <ContentView Grid.Row="1"
-                     Margin="0,-8,0,0"
+                     Margin="0,-10,0,0"
                      Padding="0, 18, 0, 0"
                      BackgroundColor="{DynamicResource Background}"
                      Content="{Binding CurrentPageContent}" 
