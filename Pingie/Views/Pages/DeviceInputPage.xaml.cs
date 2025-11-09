@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Kotlin.Jvm;
 using Pingie.Maui.ViewModels;
+using Pingie.Shared.Utils;
 
 namespace Pingie.Maui.Views.Pages;
 
 [Transient]
 public partial class DeviceInputPage : ContentView
 {
-    public DeviceInputPage(DeviceInputViewModel viewModel)
+    public DeviceInputPage()
     {
         InitializeComponent();
-        
     }
 
     private void SaveButtonClicked(object sender, EventArgs e)

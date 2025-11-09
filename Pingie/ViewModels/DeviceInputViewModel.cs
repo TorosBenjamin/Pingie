@@ -6,6 +6,7 @@ using Device = Pingie.Data.Models.Device;
 namespace Pingie.Maui.ViewModels;
 
 [Transient]
+#nullable enable
 public class DeviceInputViewModel : PingableInputViewModel
 {
     private readonly DeviceService _deviceService = ServiceHelper.GetService<DeviceService>();
@@ -14,11 +15,6 @@ public class DeviceInputViewModel : PingableInputViewModel
     public async override Task SaveChanges()
     {
         
-    }
-
-    public DeviceInputViewModel(Device device): base(device)
-    {
-        IpAddress = device.IpAddress;
     }
 
     public void Initialize(Device? device)

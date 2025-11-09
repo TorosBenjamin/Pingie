@@ -48,9 +48,9 @@ public static class InjectionRegistration
             
             if (interfaceType != null)
             {
-                services.AddSingleton(interfaceType, type);
+                services.AddTransient(interfaceType, type);
             }
-            services.AddSingleton(type);
+            services.AddTransient(type);
         }
 
         return services;

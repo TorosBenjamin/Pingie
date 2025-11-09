@@ -11,6 +11,7 @@ using Device = Pingie.Data.Models.Device;
 namespace Pingie.Maui;
 
 [Singleton]
+#nullable enable
 public class NavigationService
 {
     private static readonly Stack<View> _pageStack = new();
