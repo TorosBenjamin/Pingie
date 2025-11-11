@@ -1,5 +1,4 @@
-using Android.OS.Health;
-using Pingie.Maui.Services;
+using Pingie.Data.Services;
 using Pingie.Shared.Utils;
 using Device = Pingie.Data.Models.Device;
 
@@ -22,7 +21,7 @@ public class DeviceInputViewModel : PingableInputViewModel
         if(device == null) return;
         
         Name = device.Name;
-        IpAddress = device.IpAddress;
+        IpAddress = device.Hostname;
         PingInterval = device.PingInterval;
     }
 }

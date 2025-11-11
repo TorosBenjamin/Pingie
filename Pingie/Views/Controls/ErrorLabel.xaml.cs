@@ -10,6 +10,7 @@ public partial class ErrorLabel : ContentView
 {
     public static readonly BindableProperty ErrorMessageProperty 
         = BindableProperty.Create(nameof(ErrorMessage), typeof(string), typeof(ErrorLabel), string.Empty);
+    
     public string ErrorMessage
     {
         get => (string)GetValue(ErrorMessageProperty); 

@@ -2,7 +2,7 @@ using Pingie.Data.Repositories;
 using Pingie.Shared.Utils;
 using Pingie.Data.Models;
 
-namespace Pingie.Maui.Services;
+namespace Pingie.Data.Services;
 
 [Singleton]
 public class PingResultService(PingResultRepository repository)

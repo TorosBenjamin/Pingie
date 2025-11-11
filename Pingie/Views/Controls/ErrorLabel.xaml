@@ -4,7 +4,7 @@
              xmlns:utils="clr-namespace:Pingie.Utils"
              x:Class="Pingie.Views.Controls.ErrorLabel">
     <Border IsVisible="{Binding HasError}">
-        <Grid ColumnDefinitions="Auto, Auto">
+        <Grid ColumnDefinitions="Auto, *">
             <utils:SvgImage 
                 Source="exclamation.svg"
                 IsIcon="True"

@@ -6,11 +6,11 @@
              x:Class="Pingie.Maui.Views.Pages.MainPage">
     <ScrollView>
         <VerticalStackLayout
-            Padding="10, 0, 10, 0"
+            Padding="10, 0"
             Spacing="10">
             <Label Text="Devices"
                    HorizontalTextAlignment="Start"
-                   FontSize="22"
+                   FontSize="24"
                    TextColor="{DynamicResource PrimaryText}"
                    FontAttributes="Bold"/>
             <CollectionView ItemsSource="{Binding Devices}"

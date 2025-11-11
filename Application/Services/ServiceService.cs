@@ -5,7 +5,7 @@ using Pingie.Maui.Services.Interface;
 using Pingie.Shared.Enums;
 using Service = Pingie.Data.Models.Service;
 
-namespace Pingie.Maui.Services;
+namespace Pingie.Data.Services;
 
 [Singleton]
 public class ServiceService : IPingableService<Service>

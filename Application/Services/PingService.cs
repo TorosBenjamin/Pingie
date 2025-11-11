@@ -8,7 +8,7 @@ using Device = Pingie.Data.Models.Device;
 using Service = Pingie.Data.Models.Service;
 using Timer = System.Timers.Timer;
 
-namespace Pingie.Maui.Services;
+namespace Pingie.Data.Services;
 
  [Transient]
 public class PingService

@@ -4,5 +4,5 @@ namespace Pingie.Data.Models;
 
 public class Device : Pingable
 {
-    public string IpAddress { get; set; }
+    public readonly List<Service> Services = new();
 }

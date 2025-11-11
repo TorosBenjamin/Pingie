@@ -8,7 +8,7 @@
         Stroke="Transparent"
         BackgroundColor="{DynamicResource NavigationBarBackground}"
         StrokeShape="RoundRectangle 0,0,10,10"
-        Padding="15, 10">
+        Padding="15, 15">
         <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto">
             <utils:SvgImage x:Name="CommandIcon"
                             Source="plus.svg"

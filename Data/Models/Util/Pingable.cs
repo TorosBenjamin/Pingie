@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using Pingie.Shared.Enums;
 using Pingie.Shared.Interfaces;
@@ -7,7 +8,11 @@ namespace Pingie.Data.Models.Util;
 
 public abstract class Pingable : BaseDbModel, IPingable, INotifyPropertyChanged
 {
-    public string Name { get; set; }
+    [StringLength(30)]
+    public required string Name { get; set; }
+    
+    [StringLength(30)]
+    public required string Hostname { get; set; }
     public int PingInterval {get; set;}
 
     private PingStatus _status = PingStatus.Paused;

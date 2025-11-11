@@ -4,13 +4,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Pingie.Views.Controls"
              x:Class="Pingie.Views.Controls.ValidatableEntry">
-    <Grid RowDefinitions="Auto, Auto" RowSpacing="4">
+    <Grid RowDefinitions="Auto, Auto" 
+          ColumnDefinitions="*"
+          RowSpacing="4">
         <Entry Grid.Row="0"
-               WidthRequest="20"
                Text="{Binding Text}"
-               Placeholder="{Binding Placeholder}" />
+               Placeholder="{Binding Placeholder}" 
+               HorizontalOptions="FillAndExpand"/>
         <controls:ErrorLabel Grid.Row="1"
                              ErrorMessage="{Binding ErrorMessage}"
-                             IsVisible="{Binding HasError}" />
+                             IsVisible="{Binding HasError}"/>
     </Grid>
 </ContentView>

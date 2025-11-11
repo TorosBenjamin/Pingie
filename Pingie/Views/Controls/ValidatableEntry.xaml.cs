@@ -45,6 +45,7 @@ public partial class ValidatableEntry : ContentView
         get => (string)GetValue(ErrorMessageProperty);
         set => SetValue(ErrorMessageProperty, value);
     }
+    
     public bool HasError { get; private set; }
 
     private static void OnTextChanged(BindableObject bindable, object oldValue, object newValue)

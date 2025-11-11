@@ -1,7 +1,7 @@
 using Pingie.Data.Models.Util;
 using Pingie.Shared.Utils;
 
-namespace Pingie.Maui.Services;
+namespace Pingie.Data.Services;
 
 [Singleton]
 public class MonitorService(PingResultService pingResultService)

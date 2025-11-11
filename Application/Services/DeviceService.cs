@@ -5,7 +5,7 @@ using Pingie.Shared.Utils;
 using Pingie.Shared.Enums;
 using Device = Pingie.Data.Models.Device;
 
-namespace Pingie.Maui.Services;
+namespace Pingie.Data.Services;
 
 [Singleton]
 public class DeviceService : IPingableService<Device>
@@ -16,7 +16,7 @@ public class DeviceService : IPingableService<Device>
         PingReply reply;
         try
         {
-            reply = await ping.SendPingAsync(device.IpAddress);
+            reply = await ping.SendPingAsync(device.Hostname);
         }
         catch (Exception ex)
         {
