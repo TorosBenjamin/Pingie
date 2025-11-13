@@ -11,7 +11,7 @@ namespace Pingie.Maui.Views;
 public partial class NavigationBar : ContentView
 {
     private readonly NavigationService _navigation;
-    public static readonly BindableProperty OnCommandTappedProperty =
+    private static readonly BindableProperty OnCommandTappedProperty =
         BindableProperty.Create(
             nameof(OnCommandTapped),
             typeof(ICommand),
@@ -48,7 +48,8 @@ public partial class NavigationBar : ContentView
         var addPingablePopUp = ServiceHelper.GetService<PingableTypeSelectionPopUp>();
         
         var position = CommandIcon.GetAbsolutePosition();
-        
+
+        addPingablePopUp.IsAnimationEnabled = false;
         addPingablePopUp.Content.VerticalOptions = LayoutOptions.Start;
         addPingablePopUp.Content.HorizontalOptions = LayoutOptions.Start;
         

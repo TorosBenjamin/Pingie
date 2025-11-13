@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.ComponentModel;
 using Pingie.Data.Services;
 using Pingie.Shared.Utils;
 using Device = Pingie.Data.Models.Device;
@@ -6,14 +7,22 @@ namespace Pingie.Maui.ViewModels;
 
 [Transient]
 #nullable enable
-public class DeviceInputViewModel : PingableInputViewModel
+public partial class DeviceInputViewModel : PingableInputViewModel
 {
     private readonly DeviceService _deviceService = ServiceHelper.GetService<DeviceService>();
-    public string? IpAddress{get; set;} = null;
+    
+    [ObservableProperty] private string? _ipAddress = null;
+
+    [ObservableProperty] private List<String> _pingIntervalSelectorOptions;
     
     public async override Task SaveChanges()
     {
         
+    }
+
+    public DeviceInputViewModel()
+    {
+        _pingIntervalSelectorOptions = ["milliseconds, seconds, minutes, hours"];
     }
 
     public void Initialize(Device? device)

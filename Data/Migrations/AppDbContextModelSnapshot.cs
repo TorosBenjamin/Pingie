@@ -62,8 +62,14 @@ namespace Data.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Hostname")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PingInterval")
@@ -85,20 +91,12 @@ namespace Data.Migrations
                 {
                     b.HasBaseType("Pingie.Data.Models.Util.Pingable");
 
-                    b.Property<string>("IpAddress")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasDiscriminator().HasValue("Device");
                 });
 
             modelBuilder.Entity("Pingie.Data.Models.Service", b =>
                 {
                     b.HasBaseType("Pingie.Data.Models.Util.Pingable");
-
-                    b.Property<string>("Hostname")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("Port")
                         .HasColumnType("INTEGER");

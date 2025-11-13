@@ -3,7 +3,7 @@ using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
 using Svg.Skia;
 
-namespace Pingie.Utils;
+namespace Pingie.Maui.Utils;
 
 #nullable enable
 public class SvgImage : SKCanvasView

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pingie.Views.Controls;
+namespace Pingie.Maui.Views.Controls;
 
 public partial class ErrorLabel : ContentView
 {

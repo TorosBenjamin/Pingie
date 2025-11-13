@@ -2,15 +2,22 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <Color x:Key="NavigationBarBackground">#1e1e1e</Color>
-    <Color x:Key="Background">#121212</Color>
+    <Color x:Key="Background">#FF121212</Color>
+    <Color x:Key="SecondaryBackGround">#FF1e1e1e</Color>
     
-    <Color x:Key="PrimaryAccent">#75103f</Color>
-    <Color x:Key="SecondaryAccent">#38081e</Color>
+    <Color x:Key="StatusBar">#FF1e1e1e</Color>
+    <Color x:Key="NavigationBar">#FF121212</Color>
     
-    <Color x:Key="PrimaryText">#E0E0E0</Color>
-    <Color x:Key="SecondaryText">#A0A0A0</Color>
-    <Color x:Key="Icons">#B0B0B0</Color>
+    <Color x:Key="PrimaryAccent">#FFad1a5e</Color>
+    <Color x:Key="SecondaryAccent">#FF38081e</Color>
     
-    <Color x:Key="Error">#bf2a01</Color>
+    <Color x:Key="PrimaryText">#FFE0E0E0</Color>
+    <Color x:Key="SecondaryText">#FFA0A0A0</Color>
+    <Color x:Key="TertiaryText">#FF666363</Color>
+    
+    <Color x:Key="DividerColor">#FF474747</Color>
+    
+    <Color x:Key="Icons">#FFB0B0B0</Color>
+    
+    <Color x:Key="Error">#FFbf2a01</Color>
 </ResourceDictionary>

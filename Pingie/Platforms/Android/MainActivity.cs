@@ -1,5 +1,10 @@
 ﻿using Android.App;
 using Android.Content.PM;
+using Android.OS;
+using Android.Views;
+using Android.Graphics;
+using AndroidX.Core.View;
+using Color = Android.Graphics.Color;
 
 namespace Pingie.Maui;
 

@@ -31,9 +31,14 @@
     <EmbeddedResource Include="Resources\Images\Icons\plus.svg" />
     <None Remove="Resources\Images\Icons\exclamation.svg" />
     <EmbeddedResource Include="Resources\Images\Icons\exclamation.svg" />
+    <None Remove="Resources\Images\Icons\downarrowselector.svg" />
+    <EmbeddedResource Include="Resources\Images\Icons\downarrowselector.svg" />
+    <None Remove="Resources\Images\Icons\backarrowselector.svg" />
+    <EmbeddedResource Include="Resources\Images\Icons\backarrowselector.svg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Maui" Version="12.2.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -2,17 +2,33 @@
 
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:Pingie.Views.Controls"
-             x:Class="Pingie.Views.Controls.ValidatableEntry">
+             xmlns:controls="clr-namespace:Pingie.Maui.Views.Controls"
+             xmlns:extensions="clr-namespace:Pingie.Maui.Views.Controls.Extensions"
+             x:Class="Pingie.Maui.Views.Controls.ValidatableEntry">
     <Grid RowDefinitions="Auto, Auto" 
           ColumnDefinitions="*"
-          RowSpacing="4">
-        <Entry Grid.Row="0"
-               Text="{Binding Text}"
-               Placeholder="{Binding Placeholder}" 
-               HorizontalOptions="FillAndExpand"/>
+          RowSpacing="4"
+          HorizontalOptions="Fill">
+        <Border Grid.Row="0"
+                BackgroundColor="{DynamicResource SecondaryBackGround}"
+                Stroke="{DynamicResource PrimaryText}"
+                HorizontalOptions="Fill"
+                StrokeShape="RoundRectangle 3"
+                StrokeThickness="0.8"
+                Padding="5, 0">
+            <Entry 
+                   Text="{Binding Text}"
+                   Placeholder="{Binding Placeholder}"
+                   TextColor="{DynamicResource PrimaryText}"
+                   PlaceholderColor="{DynamicResource TertiaryText}"
+                   FontSize="16"
+                   extensions:EntryExtensions.CursorColor="{DynamicResource PrimaryAccent}"
+                   HorizontalOptions="Fill"
+                   />
+        </Border>
         <controls:ErrorLabel Grid.Row="1"
                              ErrorMessage="{Binding ErrorMessage}"
-                             IsVisible="{Binding HasError}"/>
+                             IsVisible="{Binding HasError}"
+                             HorizontalOptions="Fill"/>
     </Grid>
 </ContentView>

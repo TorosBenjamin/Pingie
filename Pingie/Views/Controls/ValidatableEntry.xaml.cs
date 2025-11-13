@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Pingie.Utils;
 
-namespace Pingie.Views.Controls;
+namespace Pingie.Maui.Views.Controls;
 
 public partial class ValidatableEntry : ContentView
 {
