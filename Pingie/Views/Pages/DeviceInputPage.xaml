@@ -5,7 +5,9 @@
              xmlns:controls="clr-namespace:Pingie.Maui.Views.Controls"
              xmlns:utils="clr-namespace:Pingie.Utils"
              x:Class="Pingie.Maui.Views.Pages.DeviceInputPage">
-    <ScrollView>
+    <ScrollView
+        VerticalScrollBarVisibility="Never"
+        HorizontalScrollBarVisibility="Never">
         <VerticalStackLayout
             Padding="15, 0">
             <Label
@@ -65,9 +67,19 @@
                     </Label.FormattedText>
                 </Label>
                 <controls:UomEntry Grid.Row="2"
+                                   x:Name="PingIntervalEntry"
                                    CurrentItem="milliseconds">
                 </controls:UomEntry>
             </Grid>
+            <Button
+                Margin="0, 50"
+                BackgroundColor="{DynamicResource SecondaryAccent}"
+                TextColor="{DynamicResource PrimaryText}"
+                Clicked="SaveButtonClicked"
+                WidthRequest="100"
+                FontSize="16"
+                FontAttributes="Bold"
+                Text="Create"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

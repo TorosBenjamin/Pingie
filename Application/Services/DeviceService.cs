@@ -1,5 +1,6 @@
 using System.Net.NetworkInformation;
 using Pingie.Data.Models;
+using Pingie.Data.Repositories;
 using Pingie.Maui.Services.Interface;
 using Pingie.Shared.Utils;
 using Pingie.Shared.Enums;
@@ -8,8 +9,13 @@ using Device = Pingie.Data.Models.Device;
 namespace Pingie.Data.Services;
 
 [Singleton]
-public class DeviceService : IPingableService<Device>
+public class DeviceService(DeviceRepository deviceRepository) : IPingableService<Device>
 {
+    public async Task<Device> SaveAsync(Device device)
+    {
+        return await deviceRepository.InsertAsync(device);
+    }
+    
     public static async Task<PingResult> Ping(Device device)
     {
         using var ping = new Ping();

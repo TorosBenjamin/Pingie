@@ -1,18 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using Mopups.Services;
-using Pingie.Views.PopUps;
+using CommunityToolkit.Mvvm.Input;
+using Pingie.Maui.ViewModels;
+using Pingie.Shared.Utils;
 
 namespace Pingie.Maui.Views.Controls;
 
+[Transient]
 public partial class UomEntry : ContentView
 {
-    private static readonly BindableProperty CurrentItemProperty =
+    public static readonly BindableProperty CurrentItemProperty =
         BindableProperty.Create(
             nameof(CurrentItem),
             typeof(string),
@@ -20,17 +19,12 @@ public partial class UomEntry : ContentView
             default(string),
             BindingMode.TwoWay);
 
-    private static readonly BindableProperty SelectorOptionsProperty =
+    public static readonly BindableProperty SelectorOptionsProperty =
         BindableProperty.Create(
             nameof(SelectorOptions),
-            typeof(List<string>),
-            typeof(UomEntry));
-
-    private static readonly BindableProperty OnSelectorTappedProperty =
-        BindableProperty.Create(
-            nameof(OnSelectorTapped),
-            typeof(ICommand),
-            typeof(UomEntry));
+            typeof(ObservableCollection<string>),
+            typeof(UomEntry),
+            new ObservableCollection<string>());
 
     public string CurrentItem
     {
@@ -38,23 +32,32 @@ public partial class UomEntry : ContentView
         set => SetValue(CurrentItemProperty, value);
     }
 
-    public List<string> SelectorOptions
+    public ObservableCollection<string> SelectorOptions
     {
-        get => (List<string>)GetValue(SelectorOptionsProperty);
+        get => (ObservableCollection<string>)GetValue(SelectorOptionsProperty);
         set => SetValue(SelectorOptionsProperty, value);
-    }
-
-    public ICommand OnSelectorTapped
-    {
-        get => (ICommand)GetValue(OnSelectorTappedProperty);
-        set => SetValue(OnSelectorTappedProperty, value);
     }
 
     public UomEntry()
     {
-        // Add a TapGestureRecognizer to handle taps
-        var tapGesture = new TapGestureRecognizer();
-        tapGesture.SetBinding(TapGestureRecognizer.CommandProperty, nameof(OnSelectorTapped));
-        this.GestureRecognizers.Add(tapGesture);
+        InitializeComponent();
+        BindingContext = ServiceHelper.GetService<UomEntryViewModel>();
+        ((UomEntryViewModel)BindingContext).PropertyChanged += OnViewModelPropertyChanged;
+    }
+    
+    public Func<string, string, int?> Converter { get; set; }
+
+    public int? Value => Converter(ValueEntry.Text, CurrentItem);
+
+    private async void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(UomEntryViewModel.IsPickerOpen))
+        {
+            bool isPickerOpen = ((UomEntryViewModel)BindingContext).IsPickerOpen;
+            double targetRotation = isPickerOpen ? -90 : 0;
+
+            // Animate the rotation
+            await PickerOpenArrow.RotateTo(targetRotation, 100, Easing.Linear);
+        }
     }
 }

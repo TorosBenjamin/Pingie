@@ -27,8 +27,7 @@
                    />
         </Border>
         <controls:ErrorLabel Grid.Row="1"
-                             ErrorMessage="{Binding ErrorMessage}"
-                             IsVisible="{Binding HasError}"
+                             x:Name="ErrorLabel"
                              HorizontalOptions="Fill"/>
     </Grid>
 </ContentView>

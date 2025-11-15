@@ -60,6 +60,6 @@ public partial class NavigationBar : ContentView
 
     private async void OnCommandPressedActionBack()
     {
-        _navigation.GoBack();
+        await _navigation.GoBack();
     }
 }

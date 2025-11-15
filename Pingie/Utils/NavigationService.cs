@@ -36,6 +36,16 @@ public class NavigationService
         _pageStack.Push(page);
     }
 
+    public async Task NavigateToMainPage()
+    {
+        var page = ServiceHelper.GetService<MainPage>();
+        BasePage.CurrentPageContent = page;
+        
+        // Can't go back from mainPage
+        _pageStack.Clear();
+        _pageStack.Push(page);
+    }
+
     public async Task GoBack()
     {
         // Don't go back on the main page.

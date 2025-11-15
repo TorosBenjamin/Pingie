@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mopups.Services;
@@ -12,13 +13,12 @@ public partial class PickerPopUpViewModel
     public ObservableCollection<string> Items { get; } = new ObservableCollection<string>();
 
     [ObservableProperty]
-    private string _selectedItem;
-
-    public IRelayCommand ConfirmCommand { get; }
+    private string _selectedItem; 
 
     // Add a callback for when an item is selected
-    public Action<string> OnItemSelected { get; set; }
+    public Action<string?> OnItemSelected { get; set; }
 
+    private bool _isInitialized = false;
     public PickerPopUpViewModel(IEnumerable<string> items, string initial)
     {
         foreach (var item in items)
@@ -27,11 +27,15 @@ public partial class PickerPopUpViewModel
         }
 
         SelectedItem = initial;
-
-        ConfirmCommand = new RelayCommand(async () =>
+        _isInitialized = true;
+    }
+    
+    partial void OnSelectedItemChanged(string value)
+    {
+        if (_isInitialized)
         {
-            OnItemSelected?.Invoke(SelectedItem);
-            await MopupService.Instance.PopAsync();
-        });
+            OnItemSelected?.Invoke(value);
+            _ = MopupService.Instance.PopAsync();
+        }
     }
 }

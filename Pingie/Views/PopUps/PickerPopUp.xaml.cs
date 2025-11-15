@@ -22,6 +22,10 @@ public partial class PickerPopUp : PopupPage
         BindingContext = new PickerPopUpViewModel(items, initial);
     }
 
-    // Expose the ViewModel for external access (optional)
     public PickerPopUpViewModel ViewModel => BindingContext as PickerPopUpViewModel;
+
+    protected override void OnDisappearing()
+    {
+        ViewModel.OnItemSelected.Invoke(null);
+    }
 }

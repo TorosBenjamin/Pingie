@@ -9,7 +9,7 @@
     <Color x:Key="NavigationBar">#FF121212</Color>
     
     <Color x:Key="PrimaryAccent">#FFad1a5e</Color>
-    <Color x:Key="SecondaryAccent">#FF38081e</Color>
+    <Color x:Key="SecondaryAccent">#FF8e114b</Color>
     
     <Color x:Key="PrimaryText">#FFE0E0E0</Color>
     <Color x:Key="SecondaryText">#FFA0A0A0</Color>
@@ -19,5 +19,5 @@
     
     <Color x:Key="Icons">#FFB0B0B0</Color>
     
-    <Color x:Key="Error">#FFbf2a01</Color>
+    <Color x:Key="Error">#FFce3b12</Color>
 </ResourceDictionary>

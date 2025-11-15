@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:extensions="clr-namespace:Pingie.Maui.Views.Controls.Extensions"
              xmlns:utils="clr-namespace:Pingie.Maui.Utils"
+             xmlns:behaviors="clr-namespace:Pingie.Maui.Utils.Behaviors"
              x:Class="Pingie.Maui.Views.Controls.UomEntry">
     <Border
         BackgroundColor="{DynamicResource SecondaryBackGround}"
@@ -12,33 +13,50 @@
         StrokeThickness="0.8"
         HorizontalOptions="Fill">
         <Grid ColumnDefinitions="*, Auto, Auto"
-              ColumnSpacing="10"
               Padding="10, 0, 5, 0">
             <Entry Grid.Column="0"
+                   x:Name="ValueEntry"
                    TextColor="{DynamicResource PrimaryText}"
                    FontSize="16"
-                   extensions:EntryExtensions.CursorColor="{DynamicResource PrimaryAccent}"/>
+                   Keyboard="Numeric"
+                   extensions:EntryExtensions.CursorColor="{DynamicResource PrimaryAccent}">
+                <Entry.Behaviors>
+                    <behaviors:NumericEntryBehavior/>
+                </Entry.Behaviors>
+            </Entry>
             <BoxView Grid.Column="1"
                      WidthRequest="1"
                      Color="{DynamicResource DividerColor}"/>
-            <HorizontalStackLayout Grid.Column="2" Spacing="3">
-                <Label
-                    Text="{Binding CurrentItem}"
-                    TextColor="{DynamicResource SecondaryText}"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    VerticalTextAlignment="Center"/>
-                <utils:SvgImage x:Name="PickerOpenArrow"
-                                Source="backarrowselector.svg"
-                                WidthRequest="25"
-                                HeightRequest="25"
-                                IsIcon="True"
-                                TintColor="{DynamicResource SecondaryText}"
-                                HorizontalOptions="Center"/>
-                <HorizontalStackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OnSelectorTapped}"></TapGestureRecognizer>
-                </HorizontalStackLayout.GestureRecognizers>
-            </HorizontalStackLayout>
+            <Grid
+                Grid.Column="2"
+                x:Name="UomSelector"
+                MinimumWidthRequest="115"
+                HorizontalOptions="Fill">
+                <Grid ColumnDefinitions="*, Auto">
+                    <Label
+                        Grid.Column="0"
+                        Text="{Binding CurrentItem}"
+                        FontSize="14"
+                        TextColor="{DynamicResource SecondaryText}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"/>
+                    <utils:SvgImage
+                        Grid.Column="1"
+                        x:Name="PickerOpenArrow"
+                        Source="backarrowselector.svg"
+                        WidthRequest="25"
+                        HeightRequest="25"
+                        IsIcon="True"
+                        TintColor="{DynamicResource SecondaryText}"
+                        HorizontalOptions="Center"/>
+                </Grid>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding OnSelectorTapped}"
+                        CommandParameter="{Reference UomSelector}"/>
+                </Grid.GestureRecognizers>
+            </Grid>
         </Grid> 
     </Border>
 </ContentView>

@@ -1,37 +1,55 @@
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mopups.Services;
 using Pingie.Maui.Views.PopUps;
+using Pingie.Shared.Utils;
+using Pingie.Utils.Extensions;
 
 namespace Pingie.Maui.ViewModels;
 
+[Transient]
 [ObservableObject]
 public partial class UomEntryViewModel
 {
+    [ObservableProperty]
+    private string _currentItem;
+
+    [ObservableProperty]
+    private ObservableCollection<string> _selectorOptions = new();
+
+    [ObservableProperty]
+    private bool _isPickerOpen = false;
+
     public ICommand OnSelectorTapped { get; }
 
-    [ObservableProperty] private string _currentProperty;
-
-    [ObservableProperty] private List<String> _selectorOptions;
-    
     public UomEntryViewModel()
     {
-        // Initialize the command
-        OnSelectorTapped = new RelayCommand(OpenPicker);
-
-        // Default values
+        OnSelectorTapped = new RelayCommand<VisualElement>(OpenPicker);
         SelectorOptions = ["milliseconds", "seconds", "minutes", "hours"];
-        CurrentProperty = "milliseconds";
+        CurrentItem = "milliseconds";
     }
 
-    private void OpenPicker()
+    private async void OpenPicker(VisualElement anchor)
     {
-        var selector = new PickerPopUp(SelectorOptions, CurrentProperty);
+        IsPickerOpen = true;
+        var selector = new PickerPopUp(SelectorOptions.ToList(), CurrentItem);
+
+        var postion = anchor.GetAbsolutePosition();
+        selector.IsAnimationEnabled = false;
+        selector.Content.VerticalOptions = LayoutOptions.Start;
+        selector.Content.HorizontalOptions = LayoutOptions.Start;
+        
+        selector.Content.Margin = new Thickness(postion.X, postion.Y + 45, 0, 0);
+
         selector.ViewModel.OnItemSelected = (selectedItem) =>
         {
-            CurrentProperty = selectedItem;
+            if (selectedItem != null)
+                CurrentItem = selectedItem;
+            IsPickerOpen = false;
         };
-        MopupService.Instance.PushAsync(selector);
+
+        await MopupService.Instance.PushAsync(selector);
     }
 }

@@ -4,6 +4,7 @@ using Pingie.Shared.Utils;
 
 namespace Pingie;
 
+#nullable enable
 public partial class App : Microsoft.Maui.Controls.Application
 {
     public static void setTheme()

@@ -3,18 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:utils="clr-namespace:Pingie.Maui.Utils"
              x:Class="Pingie.Maui.Views.Controls.ErrorLabel">
-    <Border IsVisible="{Binding HasError}">
-        <Grid ColumnDefinitions="Auto, *">
-            <utils:SvgImage 
-                Source="exclamation.svg"
-                IsIcon="True"
-                HeightRequest="10"
-                WidthRequest="10"
-                TintColor="{DynamicResource Error}"
-            />
-            <Label
-                Text="{Binding ErrorMessage}"
-                TextColor="{DynamicResource Error}"/>
-        </Grid>
-    </Border>
+    <Grid ColumnDefinitions="Auto, *"
+          ColumnSpacing="5"
+          IsVisible="{Binding HasError}"
+          BackgroundColor="Transparent">
+        <utils:SvgImage Grid.Column="0"
+                        Source="exclamation.svg"
+                        IsIcon="True"
+                        HeightRequest="15"
+                        WidthRequest="15"
+                        TintColor="{DynamicResource Error}"
+        />
+        <Label Grid.Column="1"
+               Text="{Binding ErrorMessage}"
+               TextColor="{DynamicResource Error}"/>
+    </Grid>
 </ContentView>
