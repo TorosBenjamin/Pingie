@@ -23,9 +23,6 @@ public partial class DeviceInputPage : ContentView
             int? resultInMs = null;
             switch (currentItem)
             {
-                case "milliseconds":
-                    resultInMs = value;
-                    break;
                 case "seconds":
                     resultInMs = value * 60;
                     break;

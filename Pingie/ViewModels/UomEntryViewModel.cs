@@ -27,8 +27,8 @@ public partial class UomEntryViewModel
     public UomEntryViewModel()
     {
         OnSelectorTapped = new RelayCommand<VisualElement>(OpenPicker);
-        SelectorOptions = ["milliseconds", "seconds", "minutes", "hours"];
-        CurrentItem = "milliseconds";
+        SelectorOptions = ["seconds", "minutes", "hours"];
+        CurrentItem = "seconds";
     }
 
     private async void OpenPicker(VisualElement anchor)

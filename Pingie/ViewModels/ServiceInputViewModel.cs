@@ -22,7 +22,7 @@ public partial class ServiceInputViewModel : PingableInputViewModel
 
     public ServiceInputViewModel()
     {
-        _pingIntervalSelectorOptions = ["milliseconds, seconds, minutes, hours"];
+        _pingIntervalSelectorOptions = ["seconds", "minutes", " hours"];
     }
     
     public void Initialize(Service? service)

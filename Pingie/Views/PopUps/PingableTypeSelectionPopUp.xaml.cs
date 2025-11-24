@@ -21,10 +21,13 @@ public partial class PingableTypeSelectionPopUp : PopupPage
         await MopupService.Instance.RemovePageAsync(this);
     }
     
-    private void OnAddServiceClicked(Object sender, EventArgs e)
+    private async void OnAddServiceClicked(Object sender, EventArgs e)
     {
-        
+        var navigation = ServiceHelper.GetService<NavigationService>();
+        await navigation.NavigateToServiceInputPage(null);
+        await MopupService.Instance.RemovePageAsync(this);
     }
+    
     protected override async Task OnAppearingAnimationBeginAsync()
     {
         this.AnchorX = 1;

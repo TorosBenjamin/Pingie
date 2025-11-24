@@ -1,3 +1,4 @@
+using Pingie.Data.Models;
 using Pingie.Interfaces;
 using Pingie.Maui.ViewModels;
 using Pingie.Shared.Interfaces;
@@ -29,6 +30,15 @@ public class NavigationService
         var page = ServiceHelper.GetService<DeviceInputPage>();
         var viewModel = ServiceHelper.GetService<DeviceInputViewModel>();
         viewModel.Initialize(device);
+        BasePage.CurrentPageContent = page;
+        _pageStack.Push(page);
+    }
+
+    public async Task NavigateToServiceInputPage(Service? service)
+    {
+        var page = ServiceHelper.GetService<ServiceInputPage>();
+        var viewMode = ServiceHelper.GetService<ServiceInputViewModel>();
+        viewMode.Initialize(service);
         BasePage.CurrentPageContent = page;
         _pageStack.Push(page);
     }

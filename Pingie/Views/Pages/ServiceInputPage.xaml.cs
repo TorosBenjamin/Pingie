@@ -1,5 +1,6 @@
 using Pingie.Data.Models;
 using Pingie.Data.Services;
+using Pingie.Maui.Utils;
 using Pingie.Shared.Utils;
 
 namespace Pingie.Maui.Views.Pages;
@@ -23,9 +24,6 @@ public partial class ServiceInputPage : ContentView
             int? resultInMs = null;
             switch (currentItem)
             {
-                case "milliseconds":
-                    resultInMs = value;
-                    break;
                 case "seconds":
                     resultInMs = value * 60;
                     break;
@@ -46,7 +44,11 @@ public partial class ServiceInputPage : ContentView
         // TODO: Open error popup when there are wrong inputs
         if (NameEntry.HasError) return;
         
-        if(HostNameEntry.HasError) return;
+        if(IpAddressEntry.HasError) return;
+        
+        if(UrlEntry.HasError) return;
+        
+        if(PortEntry.HasError) return;
         
         
         var pingInterval = PingIntervalEntry.Value;
@@ -55,13 +57,21 @@ public partial class ServiceInputPage : ContentView
         var name = NameEntry.Text;
         if(string.IsNullOrEmpty(name)) return;
         
-        var hostName = HostNameEntry.Text;
+        var hostName = IpAddressEntry.Text;
         if(string.IsNullOrEmpty(hostName)) return;
+
+        var url = UrlEntry.Text;
+        if(string.IsNullOrEmpty(url)) return;
+
+        // Change port entry to number entry
+        if (!int.TryParse(PortEntry.Text, out var port)) return;
 
         var service = new Service()
         {
             Name = name, 
-            Hostname = hostName, 
+            Hostname = hostName,
+            Url = url,
+            Port = port,
             PingInterval = pingInterval.NotNull()
         };
         await _serviceService.SaveAsync(service);

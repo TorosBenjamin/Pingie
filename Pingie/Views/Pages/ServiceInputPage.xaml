@@ -41,18 +41,53 @@
                 <Label Grid.Row="0" FontSize="18" Margin="0,0,0,10">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Host Name " TextColor="{DynamicResource PrimaryText}" />
+                            <Span Text="Ip address " TextColor="{DynamicResource PrimaryText}" />
                             <Span Text="*" TextColor="{DynamicResource PrimaryAccent}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <controls:ValidatableEntry x:Name="HostNameEntry" 
+                <controls:ValidatableEntry x:Name="IpAddressEntry" 
                                            Grid.Row="1"
                                            Text="{Binding Name}" 
                                            Placeholder="192.168.0.0">
                     <controls:ValidatableEntry.ValidationAndErrors>
                         <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.IsNotEmpty}" Error="Ip address is required." />
-                        <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.MaxLength30}" Error="Hostname max length is 30."/>
+                        <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.MaxLength30}" Error="Ip address max length is 30."/>
+                    </controls:ValidatableEntry.ValidationAndErrors>
+                </controls:ValidatableEntry>
+            </Grid>
+            <Grid RowDefinitions="Auto, Auto"
+                  Margin="0, 10">
+                <Label Grid.Row="0"
+                       Text="Url" 
+                       TextColor="{DynamicResource PrimaryText}"
+                       FontSize="18" 
+                       Margin="0,0,0,10"
+                       />
+                <controls:ValidatableEntry x:Name="UrlEntry" 
+                                           Grid.Row="1"
+                                           Text="{Binding Url}" 
+                                           Placeholder="pingie.com">
+                    <controls:ValidatableEntry.ValidationAndErrors>
+                        <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.MaxLength30}" Error="Url max length is 30."/>
+                    </controls:ValidatableEntry.ValidationAndErrors>
+                </controls:ValidatableEntry>
+            </Grid>
+            <Grid RowDefinitions="Auto, Auto"
+                  Margin="0, 10">
+                <Label Grid.Row="0"
+                       Text="Port" 
+                       TextColor="{DynamicResource PrimaryText}"
+                       FontSize="18" 
+                       Margin="0,0,0,10"
+                />
+                <!-- TODO: Port entry should be an int-->
+                <controls:ValidatableEntry x:Name="PortEntry" 
+                                           Grid.Row="1"
+                                           Text="{Binding Port}" 
+                                           Placeholder="443">
+                    <controls:ValidatableEntry.ValidationAndErrors>
+                        <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.MaxLength30}" Error="Port max length is 30."/>
                     </controls:ValidatableEntry.ValidationAndErrors>
                 </controls:ValidatableEntry>
             </Grid>
@@ -68,7 +103,7 @@
                 </Label>
                 <controls:UomEntry Grid.Row="2"
                                    x:Name="PingIntervalEntry"
-                                   CurrentItem="milliseconds">
+                                   CurrentItem="seconds">
                 </controls:UomEntry>
             </Grid>
             <Button

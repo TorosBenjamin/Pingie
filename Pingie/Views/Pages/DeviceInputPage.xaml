@@ -68,7 +68,7 @@
                 </Label>
                 <controls:UomEntry Grid.Row="2"
                                    x:Name="PingIntervalEntry"
-                                   CurrentItem="milliseconds">
+                                   CurrentItem="secpnds">
                 </controls:UomEntry>
             </Grid>
             <Button

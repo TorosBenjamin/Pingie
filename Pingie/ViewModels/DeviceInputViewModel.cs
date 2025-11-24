@@ -22,7 +22,7 @@ public partial class DeviceInputViewModel : PingableInputViewModel
 
     public DeviceInputViewModel()
     {
-        _pingIntervalSelectorOptions = ["milliseconds, seconds, minutes, hours"];
+        _pingIntervalSelectorOptions = ["seconds", "minutes", "hours"];
     }
 
     public void Initialize(Device? device)
