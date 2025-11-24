@@ -1,6 +1,7 @@
 using System.Net.Sockets;
 using Pingie.Shared.Utils;
 using Pingie.Data.Models;
+using Pingie.Data.Repositories;
 using Pingie.Maui.Services.Interface;
 using Pingie.Shared.Enums;
 using Service = Pingie.Data.Models.Service;
@@ -8,8 +9,18 @@ using Service = Pingie.Data.Models.Service;
 namespace Pingie.Data.Services;
 
 [Scoped]
-public class ServiceService : IPingableService<Service>
+public class ServiceService(ServiceRepository serviceRepository) : IPingableService<Service>
 {
+    public async Task<List<Service>> GetAllAsync()
+    {
+        return await serviceRepository.GetAllAsync();
+    }
+
+    public async Task<Service> SaveAsync(Service service)
+    {
+        return await serviceRepository.SaveAsync(service);
+    }
+    
     public static async Task<PingResult> Ping(Service service)
     {
         try

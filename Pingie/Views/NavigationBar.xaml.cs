@@ -1,8 +1,8 @@
 using System.Windows.Input;
 using Mopups.Services;
+using Pingie.Maui.Utils;
+using Pingie.Maui.Utils.Extensions;
 using Pingie.Shared.Utils;
-using Pingie.Utils;
-using Pingie.Utils.Extensions;
 using Pingie.Views.PopUps;
 
 namespace Pingie.Maui.Views;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
 using System.Text;
 using System.Threading.Tasks;
-using Pingie.Utils;
+using Pingie.Maui.Utils;
 
 namespace Pingie.Maui.Views.Controls;
 

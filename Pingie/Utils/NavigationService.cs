@@ -1,14 +1,11 @@
-using AndroidX.Lifecycle;
 using Pingie.Interfaces;
-using Pingie.Maui.Services;
 using Pingie.Maui.ViewModels;
-using Pingie.Maui.Views;
 using Pingie.Shared.Interfaces;
 using Pingie.Shared.Utils;
 using Pingie.Maui.Views.Pages;
 using Device = Pingie.Data.Models.Device;
 
-namespace Pingie.Maui;
+namespace Pingie.Maui.Utils;
 
 [Singleton]
 #nullable enable
@@ -42,7 +39,7 @@ public class NavigationService
         var viewModel = ServiceHelper.GetService<MainViewModel>();
         page.BindingContext = viewModel;
         BasePage.CurrentPageContent = page;
-        viewModel.Initialize();
+        await viewModel.Initialize();
         
         // Can't go back from mainPage
         _pageStack.Clear();

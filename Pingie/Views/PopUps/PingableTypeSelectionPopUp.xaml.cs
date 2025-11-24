@@ -1,17 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Maui.Extensions;
-using CommunityToolkit.Maui.Views;
-using ExCSS;
+
 using Mopups.Pages;
 using Mopups.Services;
-using Pingie.Maui;
+using Pingie.Maui.Utils;
 using Pingie.Shared.Utils;
-using Color = Microsoft.Maui.Graphics.Color;
-using Colors = Microsoft.Maui.Graphics.Colors;
 
 namespace Pingie.Views.PopUps;
 

@@ -3,9 +3,9 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mopups.Services;
+using Pingie.Maui.Utils.Extensions;
 using Pingie.Maui.Views.PopUps;
 using Pingie.Shared.Utils;
-using Pingie.Utils.Extensions;
 
 namespace Pingie.Maui.ViewModels;
 

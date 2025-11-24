@@ -1,4 +1,4 @@
-namespace Pingie.Utils;
+namespace Pingie.Maui.Utils;
 
 public class ValidationErrorRule
 {

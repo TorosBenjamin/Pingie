@@ -28,6 +28,11 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Label Text="Services"
+                   HorizontalTextAlignment="Start"
+                   FontSize="24"
+                   TextColor="{DynamicResource PrimaryText}"
+                   FontAttributes="Bold"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

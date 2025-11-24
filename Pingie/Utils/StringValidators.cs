@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Pingie.Utils;
+namespace Pingie.Maui.Utils;
 
 public static class StringValidators
 {

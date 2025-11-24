@@ -1,14 +1,10 @@
-using Android.OS;
-using Android.Views;
 using CommunityToolkit.Maui.Behaviors;
 using CommunityToolkit.Maui.Core;
 using Pingie.Interfaces;
-using Pingie.Maui.ViewModels;
 using Pingie.Maui.Views.Pages;
 using Pingie.Shared.Utils;
 using CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;
-using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
-using Application = Microsoft.Maui.Controls.Application;
+using Pingie.Maui.Utils;
 using View = Microsoft.Maui.Controls.View;
 
 

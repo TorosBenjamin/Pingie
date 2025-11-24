@@ -4,14 +4,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Pingie.Maui.Views.Controls"
              xmlns:utils="clr-namespace:Pingie.Maui.Utils"
-             x:Class="Pingie.Maui.Views.Pages.DeviceInputPage">
+             x:Class="Pingie.Maui.Views.Pages.ServiceInputPage">
     <ScrollView
         VerticalScrollBarVisibility="Never"
         HorizontalScrollBarVisibility="Never">
         <VerticalStackLayout
             Padding="15, 0">
             <Label
-                Text="Add device"
+                Text="Add service"
                 TextColor="{DynamicResource PrimaryText}"
                 FontSize="24"
                 HorizontalOptions="Start"

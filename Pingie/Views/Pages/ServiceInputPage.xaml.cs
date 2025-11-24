@@ -1,19 +1,19 @@
+using Pingie.Data.Models;
 using Pingie.Data.Services;
-using Pingie.Maui.Utils;
 using Pingie.Shared.Utils;
-using Device = Pingie.Data.Models.Device;
 
 namespace Pingie.Maui.Views.Pages;
 
 [Transient]
-public partial class DeviceInputPage : ContentView
+public partial class ServiceInputPage : ContentView
 {
-    private readonly DeviceService _deviceService;
+    
+    private readonly ServiceService _serviceService;
     private readonly NavigationService _navigation;
     
-    public DeviceInputPage(DeviceService deviceService, NavigationService navigation)
+    public ServiceInputPage(ServiceService serviceService, NavigationService navigation)
     {
-        _deviceService = deviceService;
+        _serviceService = serviceService;
         _navigation = navigation;
         InitializeComponent();
         PingIntervalEntry.Converter = (text, currentItem) =>
@@ -40,7 +40,7 @@ public partial class DeviceInputPage : ContentView
             return resultInMs;
         };
     }
-
+    
     private async void SaveButtonClicked(object sender, EventArgs e)
     {
         // TODO: Open error popup when there are wrong inputs
@@ -58,13 +58,13 @@ public partial class DeviceInputPage : ContentView
         var hostName = HostNameEntry.Text;
         if(string.IsNullOrEmpty(hostName)) return;
 
-        var device = new Device()
+        var service = new Service()
         {
             Name = name, 
             Hostname = hostName, 
-            PingInterval = NullExtensions.NotNull(pingInterval)
+            PingInterval = pingInterval.NotNull()
         };
-        await _deviceService.SaveAsync(device);
+        await _serviceService.SaveAsync(service);
         await _navigation.NavigateToMainPage();
     }
 }

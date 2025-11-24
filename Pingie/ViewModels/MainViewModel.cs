@@ -1,8 +1,8 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Pingie.Data.Repositories;
+using Pingie.Data.Models;
 using Pingie.Data.Services;
-using Pingie.Maui.Services;
+using Pingie.Maui.Utils;
 using Pingie.Shared.Utils;
 using Device = Pingie.Data.Models.Device;
 
@@ -13,37 +13,36 @@ public class MainViewModel
 {
     private readonly MonitorService _monitor;
     private readonly NavigationService _navigation;
-    private readonly DeviceRepository _deviceRepository;
-    private readonly ObservableCollection<Device> _devices = new();
+    private readonly DeviceService _deviceService;
+    private readonly ServiceService _serviceService;
+    
+    public ObservableCollection<Device> Devices { get; } = [];
+
+    public ObservableCollection<Service> Services { get; } = [];
     
     public ICommand DeviceTappedCommand { get; }
 
-    public MainViewModel(NavigationService navigation , DeviceRepository deviceRepository, MonitorService monitor)
+    public MainViewModel(NavigationService navigation , DeviceService deviceService, ServiceService serviceService,MonitorService monitor)
     {
-        _deviceRepository = deviceRepository;
+        _deviceService = deviceService;
+        _serviceService = serviceService;
         _monitor = monitor;
         _navigation = navigation;
         
         DeviceTappedCommand = new Command<Device>(OnDeviceTapped);
     }
 
-    public ObservableCollection<Device> Devices => _devices;
-
-    public async void Initialize()
+    public async Task Initialize()
     {
-        await LoadAllDevicesAsync();
+        await LoadAllDevicesAndServicesAsync();
     }
     
-    private async Task LoadAllDevicesAsync()
+    private async Task LoadAllDevicesAndServicesAsync()
     {
-        var devices = await _deviceRepository.GetAllAsync();
-        devices.ForEach(d => AddDevice(d));
-    }
-
-    private void AddDevice(Device device)
-    {
-        _devices.Add(device);
-        _monitor.StartMonitoring(device);
+        var devices = await _deviceService.GetAllAsync();
+        devices.ForEach(d => Devices.Add(d));
+        var services = await _serviceService.GetAllAsync();
+        services.ForEach(s => Services.Add(s));
     }
     
     private async void OnDeviceTapped(Device device)

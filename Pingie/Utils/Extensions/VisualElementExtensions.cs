@@ -1,4 +1,4 @@
-namespace Pingie.Utils.Extensions;
+namespace Pingie.Maui.Utils.Extensions;
 
 public static class VisualElementExtensions
 {

@@ -15,6 +15,11 @@ public class DeviceService(DeviceRepository deviceRepository) : IPingableService
     {
         return await deviceRepository.InsertAsync(device);
     }
+
+    public async Task<List<Device>> GetAllAsync()
+    {
+        return await deviceRepository.GetAllAsync();
+    }
     
     public static async Task<PingResult> Ping(Device device)
     {
