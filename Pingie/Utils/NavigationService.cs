@@ -39,7 +39,10 @@ public class NavigationService
     public async Task NavigateToMainPage()
     {
         var page = ServiceHelper.GetService<MainPage>();
+        var viewModel = ServiceHelper.GetService<MainViewModel>();
+        page.BindingContext = viewModel;
         BasePage.CurrentPageContent = page;
+        viewModel.Initialize();
         
         // Can't go back from mainPage
         _pageStack.Clear();

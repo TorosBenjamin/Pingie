@@ -48,7 +48,7 @@ public partial class BasePage : ContentPage, IBasePage
         }
     }
 
-    public BasePage(MainPage mainPage, MainViewModel mainViewModel, NavigationService navigation)
+    public BasePage(NavigationService navigation)
     {
         ChangeNavigationBarColor(Color.FromArgb("#121212"));
         ChangeStatusBarColor(Color.FromArgb("#1e1e1e"));
@@ -56,10 +56,8 @@ public partial class BasePage : ContentPage, IBasePage
         BindingContext = this;
         navigation.BasePage = this;
         _navigation = navigation;
-        
-        NavigationService.PushWithoutDisplay(mainPage).Wait();
-        mainPage.BindingContext = mainViewModel;
-        CurrentPageContent = mainPage;
+
+        navigation.NavigateToMainPage();
     }
 
     public void ChangeNavigationBarColor(Color color)

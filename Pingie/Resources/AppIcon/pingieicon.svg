@@ -2,13 +2,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="500"
-   height="500"
-   viewBox="0 0 132.29166 132.29167"
+   width="250"
+   height="250"
+   viewBox="0 0 132.29166 132.29169"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
-   sodipodi:docname="PingieLogo.svg"
+   sodipodi:docname="pingieforeground.svg"
+   inkscape:export-filename="pingieicon.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,41 +27,41 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      inkscape:zoom="0.62366071"
-     inkscape:cx="345.54044"
-     inkscape:cy="80.973515"
-     inkscape:window-width="1920"
-     inkscape:window-height="1080"
+     inkscape:cx="319.08375"
+     inkscape:cy="-58.525412"
+     inkscape:window-width="1908"
+     inkscape:window-height="1023"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g7"
+     inkscape:current-layer="svg1"
      showgrid="true"
      showguides="false">
     <sodipodi:guide
-       position="106.71955,95.206057"
+       position="106.71955,21.105898"
        orientation="0,500"
        id="guide3"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="65.396663,142.49114"
+       position="65.396664,68.390989"
        orientation="500,0"
        id="guide4"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="124.09091,37.049242"
+       position="124.09091,-37.050912"
        orientation="0,-500"
        id="guide5"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="0,0"
+       position="2.5594622e-06,-74.100154"
        orientation="-500,0"
        id="guide6"
        inkscape:locked="false" />
     <inkscape:grid
        id="grid6"
        units="px"
-       originx="0"
-       originy="0"
+       originx="2.6012178e-06"
+       originy="2.6702523e-06"
        spacingx="1.3229167"
        spacingy="1.3229167"
        empcolor="#0099e5"
@@ -68,13 +71,22 @@
        empspacing="5"
        enabled="true"
        visible="false" />
+    <inkscape:page
+       x="0"
+       y="0"
+       width="132.29166"
+       height="132.29169"
+       id="page2"
+       margin="0"
+       bleed="0" />
   </sodipodi:namedview>
   <defs
      id="defs1" />
   <g
      inkscape:label="Background"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     style="display:inline">
     <rect
        style="fill:#ad1a5e;fill-opacity:1;stroke-width:0.265425;stroke-dasharray:none"
        id="rect1"
@@ -87,7 +99,8 @@
   </g>
   <g
      id="g7"
-     inkscape:label="Face">
+     inkscape:label="Face"
+     style="display:none">
     <g
        inkscape:groupmode="layer"
        id="layer2"

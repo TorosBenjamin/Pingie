@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pingie.Data;
 
@@ -10,39 +11,14 @@ using Pingie.Data;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251111101010_Renam_IpAdress_to_Hostname_and_added_Services_in_Device")]
+    partial class Renam_IpAdress_to_Hostname_and_added_Services_in_Device
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
-
-            modelBuilder.Entity("Pingie.Data.Models.Device", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Hostname")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("PingInterval")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Devices", (string)null);
-                });
 
             modelBuilder.Entity("Pingie.Data.Models.PingResult", b =>
                 {
@@ -73,14 +49,21 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PingableId");
+
                     b.ToTable("PingResults");
                 });
 
-            modelBuilder.Entity("Pingie.Data.Models.Service", b =>
+            modelBuilder.Entity("Pingie.Data.Models.Util.Pingable", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Hostname")
                         .IsRequired()
@@ -95,18 +78,47 @@ namespace Data.Migrations
                     b.Property<int>("PingInterval")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Port")
+                    b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Status")
+                    b.HasKey("Id");
+
+                    b.ToTable("Pingable");
+
+                    b.HasDiscriminator().HasValue("Pingable");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("Pingie.Data.Models.Device", b =>
+                {
+                    b.HasBaseType("Pingie.Data.Models.Util.Pingable");
+
+                    b.HasDiscriminator().HasValue("Device");
+                });
+
+            modelBuilder.Entity("Pingie.Data.Models.Service", b =>
+                {
+                    b.HasBaseType("Pingie.Data.Models.Util.Pingable");
+
+                    b.Property<int>("Port")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Url")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasDiscriminator().HasValue("Service");
+                });
 
-                    b.ToTable("Services", (string)null);
+            modelBuilder.Entity("Pingie.Data.Models.PingResult", b =>
+                {
+                    b.HasOne("Pingie.Data.Models.Util.Pingable", "Pingable")
+                        .WithMany()
+                        .HasForeignKey("PingableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pingable");
                 });
 #pragma warning restore 612, 618
         }

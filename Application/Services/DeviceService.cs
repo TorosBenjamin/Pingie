@@ -8,7 +8,7 @@ using Device = Pingie.Data.Models.Device;
 
 namespace Pingie.Data.Services;
 
-[Singleton]
+[Scoped]
 public class DeviceService(DeviceRepository deviceRepository) : IPingableService<Device>
 {
     public async Task<Device> SaveAsync(Device device)

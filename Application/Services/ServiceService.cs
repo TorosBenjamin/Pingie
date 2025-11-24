@@ -7,7 +7,7 @@ using Service = Pingie.Data.Models.Service;
 
 namespace Pingie.Data.Services;
 
-[Singleton]
+[Scoped]
 public class ServiceService : IPingableService<Service>
 {
     public static async Task<PingResult> Ping(Service service)

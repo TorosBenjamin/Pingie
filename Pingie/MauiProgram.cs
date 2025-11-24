@@ -65,7 +65,8 @@ public static class MauiProgram
         {
             builder.Services
                 .AddSingletonInjections(asm)
-                .AddTransientInjections(asm);
+                .AddTransientInjections(asm)
+                .AddScopedInjections(asm);
         }
 
         // Initialize database
@@ -73,7 +74,7 @@ public static class MauiProgram
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
             options.UseSqlite($"Data Source={dataBasePath}");
-        });
+        }, ServiceLifetime.Scoped);
         
 #if DEBUG
         builder.Logging.AddDebug();
@@ -120,7 +121,15 @@ public static class MauiProgram
         
         
         var app = builder.Build();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            dbContext.Database.Migrate();
+        }
+        
         ServiceHelper.Initialize(app.Services);
+        
         return app;
     }
 }

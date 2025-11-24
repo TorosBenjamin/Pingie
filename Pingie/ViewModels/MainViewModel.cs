@@ -23,12 +23,16 @@ public class MainViewModel
         _deviceRepository = deviceRepository;
         _monitor = monitor;
         _navigation = navigation;
-
-        LoadAllDevicesAsync();
+        
         DeviceTappedCommand = new Command<Device>(OnDeviceTapped);
     }
 
     public ObservableCollection<Device> Devices => _devices;
+
+    public async void Initialize()
+    {
+        await LoadAllDevicesAsync();
+    }
     
     private async Task LoadAllDevicesAsync()
     {
@@ -36,7 +40,7 @@ public class MainViewModel
         devices.ForEach(d => AddDevice(d));
     }
 
-    private async void AddDevice(Device device)
+    private void AddDevice(Device device)
     {
         _devices.Add(device);
         _monitor.StartMonitoring(device);
