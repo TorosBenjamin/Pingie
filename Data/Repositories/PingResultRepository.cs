@@ -4,10 +4,12 @@ using Pingie.Shared.Utils;
 
 namespace Pingie.Data.Repositories;
 
-[Singleton]
+[Scoped]
 public class PingResultRepository(AppDbContext dbContext)
 {
+    private static readonly SemaphoreSlim _dbLock = new SemaphoreSlim(1, 1);
     private readonly DbSet<PingResult> _pingResults = dbContext.PingResults;
+    
     public async Task<PingResult> InsertAsync(PingResult pingResult)
     {
         var entry = await _pingResults.AddAsync(pingResult);

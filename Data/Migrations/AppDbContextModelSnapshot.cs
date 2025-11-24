@@ -17,6 +17,33 @@ namespace Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
 
+            modelBuilder.Entity("Pingie.Data.Models.Device", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Hostname")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PingInterval")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Devices", (string)null);
+                });
+
             modelBuilder.Entity("Pingie.Data.Models.PingResult", b =>
                 {
                     b.Property<long>("Id")
@@ -46,21 +73,14 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PingableId");
-
                     b.ToTable("PingResults");
                 });
 
-            modelBuilder.Entity("Pingie.Data.Models.Util.Pingable", b =>
+            modelBuilder.Entity("Pingie.Data.Models.Service", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Hostname")
                         .IsRequired()
@@ -75,47 +95,18 @@ namespace Data.Migrations
                     b.Property<int>("PingInterval")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Status")
+                    b.Property<int>("Port")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Pingable");
-
-                    b.HasDiscriminator().HasValue("Pingable");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("Pingie.Data.Models.Device", b =>
-                {
-                    b.HasBaseType("Pingie.Data.Models.Util.Pingable");
-
-                    b.HasDiscriminator().HasValue("Device");
-                });
-
-            modelBuilder.Entity("Pingie.Data.Models.Service", b =>
-                {
-                    b.HasBaseType("Pingie.Data.Models.Util.Pingable");
-
-                    b.Property<int>("Port")
+                    b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Url")
                         .HasColumnType("TEXT");
 
-                    b.HasDiscriminator().HasValue("Service");
-                });
+                    b.HasKey("Id");
 
-            modelBuilder.Entity("Pingie.Data.Models.PingResult", b =>
-                {
-                    b.HasOne("Pingie.Data.Models.Util.Pingable", "Pingable")
-                        .WithMany()
-                        .HasForeignKey("PingableId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pingable");
+                    b.ToTable("Services", (string)null);
                 });
 #pragma warning restore 612, 618
         }

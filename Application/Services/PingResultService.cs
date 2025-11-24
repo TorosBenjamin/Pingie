@@ -4,10 +4,10 @@ using Pingie.Data.Models;
 
 namespace Pingie.Data.Services;
 
-[Singleton]
+[Transient]
 public class PingResultService(PingResultRepository repository)
 {
-    public async void InsertPingResult(PingResult pingResult)
+    public async Task InsertPingResult(PingResult pingResult)
     {
         await repository.InsertAsync(pingResult);
     }
