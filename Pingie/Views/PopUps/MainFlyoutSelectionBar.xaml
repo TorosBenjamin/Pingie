@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:utils="clr-namespace:Pingie.Maui.Utils"
+             xmlns:converters="clr-namespace:Pingie.Maui.Utils.Converters"
+             x:Class="Pingie.Maui.Views.Controls.MainFlyoutSelectionBar"
+             BackgroundColor="Transparent"
+             CloseWhenBackgroundIsClicked="False">
+    <mopups:PopupPage.Resources>
+        <converters:ResumePauseSourceConverter x:Key="ResumePauseSourceConverter"/>
+        <converters:ResumePauseTextConverter x:Key="ResumePauseTextConverter"/>
+    </mopups:PopupPage.Resources>
+    <Border
+        StrokeThickness="0"
+        Stroke="Transparent"
+        BackgroundColor="{DynamicResource SecondaryBackGround}"
+        Margin="0, 500,0, 0"
+        StrokeShape="RoundRectangle 15,15,0,0"
+        Padding="15, 10, 20, 15">
+        <Grid ColumnDefinitions="Auto, Auto, Auto, Auto"
+              VerticalOptions="End"
+              HorizontalOptions="Center"
+              ColumnSpacing="30">
+            <Grid RowDefinitions="Auto, Auto" Grid.Column="0" RowSpacing="5">
+                <utils:SvgImage Grid.Row="0"
+                                Source="trash.svg"
+                                WidthRequest="25"
+                                HeightRequest="25"
+                                IsIcon="True"
+                                TintColor="{DynamicResource PrimaryText}"/>
+                <Label Text="Delete" Grid.Row="1"
+                       TextColor="{DynamicResource PrimaryText}" 
+                       FontAttributes="Bold"/>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnDeleteTappedCommand}" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <Grid RowDefinitions="Auto, Auto" Grid.Column="1" RowSpacing="5">
+                <utils:SvgImage Grid.Row="0"
+                                Source="edit.svg"
+                                WidthRequest="25"
+                                HeightRequest="25"
+                                IsIcon="True"
+                                TintColor="{DynamicResource PrimaryText}"/>
+                <Label Text="Edit" Grid.Row="1"
+                       TextColor="{DynamicResource PrimaryText}" 
+                       FontAttributes="Bold"/>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnEditTappedCommand}" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <Grid RowDefinitions="Auto, Auto" Grid.Column="2" RowSpacing="5">
+                <utils:SvgImage Grid.Row="0"
+                                Source="share.svg"
+                                WidthRequest="25"
+                                HeightRequest="25"
+                                IsIcon="True"
+                                TintColor="{DynamicResource PrimaryText}"/>
+                <Label Text="Share" Grid.Row="1"
+                       TextColor="{DynamicResource PrimaryText}" 
+                       FontAttributes="Bold"/>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnShareTappedCommand}" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <Grid RowDefinitions="Auto, Auto" Grid.Column="3" RowSpacing="5">
+                <utils:SvgImage Grid.Row="0"
+                                Source="{Binding IsPaused, Converter={StaticResource ResumePauseSourceConverter}}"
+                                WidthRequest="25"
+                                HeightRequest="25"
+                                IsIcon="True"
+                                TintColor="{DynamicResource PrimaryText}"/>
+                <Label Grid.Row="1"
+                       Text="{Binding IsPaused, Converter={StaticResource ResumePauseTextConverter}}"
+                       TextColor="{DynamicResource PrimaryText}" 
+                       FontAttributes="Bold"/>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnResumeTappedCommand}" />
+                </Grid.GestureRecognizers>
+            </Grid>
+        </Grid>
+    </Border>
+</mopups:PopupPage>

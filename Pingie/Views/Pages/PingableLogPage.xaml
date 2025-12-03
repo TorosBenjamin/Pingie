@@ -4,16 +4,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:Pingie.Data.Models;assembly=Data"
              x:Class="Pingie.Maui.Views.Pages.PingableLogPage">
-    <CollectionView ItemsSource="{Binding Logs}">
-        <CollectionView.EmptyView>
-            <StackLayout>
-                <Label Text="No logs yet." HorizontalOptions="Center" VerticalOptions="Center" />
-            </StackLayout>
-        </CollectionView.EmptyView>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="model:PingResult">
-                <Label Text="{Binding LogMessage}" />
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <VerticalStackLayout>
+        <Label Text="Logs" TextColor="{DynamicResource PrimaryText}"/>
+        <CollectionView ItemsSource="{Binding Logs}">
+            <CollectionView.EmptyView>
+                <StackLayout>
+                    <Label Text="No logs yet." HorizontalOptions="Center" VerticalOptions="Center" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:PingResult">
+                    <Label Text="{Binding LogMessage}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
 </ContentView>

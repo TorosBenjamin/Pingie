@@ -11,6 +11,7 @@ namespace Pingie.Data.Services;
 [Scoped]
 public class ServiceService(ServiceRepository serviceRepository) : IPingableService<Service>
 {
+    
     public async Task<List<Service>> GetAllAsync()
     {
         return await serviceRepository.GetAllAsync();
@@ -19,6 +20,11 @@ public class ServiceService(ServiceRepository serviceRepository) : IPingableServ
     public async Task<Service> SaveAsync(Service service)
     {
         return await serviceRepository.SaveAsync(service);
+    }
+    
+    public async Task<bool> DeleteAsync(Service service)
+    {
+        return await serviceRepository.DeleteAsync(service);
     }
     
     public static async Task<PingResult> Ping(Service service)

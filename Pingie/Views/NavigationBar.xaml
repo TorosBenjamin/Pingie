@@ -21,9 +21,10 @@
                 </utils:SvgImage.GestureRecognizers>
             </utils:SvgImage>
             <utils:SvgImage Grid.Column="2"
-                            Source="Resources/AppIcon/appicon.svg"
+                            Source="appicon.svg"
                             WidthRequest="30"
-                            HeightRequest="30"/>
+                            HeightRequest="30"
+                            IsIcon="False"/>
         </Grid>
     </Border>
 </ContentView>

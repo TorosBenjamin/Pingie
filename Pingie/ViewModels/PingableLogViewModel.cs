@@ -23,7 +23,7 @@ public class PingableLogViewModel(PingResultService pingResultService)
     private async void LoadLogsAsync()
     {
         if(Pingable == null) return;
-        var results = await pingResultService.GetAllPingResultByPingableId(Pingable.Id);
+        var results = await pingResultService.GetAllPingResultByPingableId(Pingable.Id, 0, 200);
         
         MainThread.BeginInvokeOnMainThread(() =>
         {

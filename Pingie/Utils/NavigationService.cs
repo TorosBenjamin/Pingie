@@ -30,6 +30,17 @@ public class NavigationService
         var page = ServiceHelper.GetService<DeviceInputPage>();
         var viewModel = ServiceHelper.GetService<DeviceInputViewModel>();
         viewModel.Initialize(device);
+        page.BindingContext = viewModel;
+        BasePage.CurrentPageContent = page;
+        _pageStack.Push(page);
+    }
+
+    public async Task NavigateToDeviceDetailPage(Device device)
+    {
+        var page = ServiceHelper.GetService<DeviceDetailPage>();
+        var viewModel = ServiceHelper.GetService<DeviceDetailViewModel>();
+        viewModel.Initialize(device);
+        page.BindingContext = viewModel;
         BasePage.CurrentPageContent = page;
         _pageStack.Push(page);
     }
@@ -43,7 +54,7 @@ public class NavigationService
         _pageStack.Push(page);
     }
 
-    public async Task NavigateToMainPage()
+    public async void NavigateToMainPage()
     {
         var page = ServiceHelper.GetService<MainPage>();
         var viewModel = ServiceHelper.GetService<MainViewModel>();

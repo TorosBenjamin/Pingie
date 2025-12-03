@@ -24,13 +24,13 @@ public partial class DeviceInputPage : ContentView
             switch (currentItem)
             {
                 case "seconds":
-                    resultInMs = value * 60;
+                    resultInMs = value * 1000;
                     break;
                 case "minutes":
-                    resultInMs = value * 360;
+                    resultInMs = value * 60000;
                     break;
                 case "hours":
-                    resultInMs = value * 21600;
+                    resultInMs = value * 3600000;
                     break;
             }
 
@@ -62,6 +62,6 @@ public partial class DeviceInputPage : ContentView
             PingInterval = NullExtensions.NotNull(pingInterval)
         };
         await _deviceService.SaveAsync(device);
-        await _navigation.NavigateToMainPage();
+        _navigation.NavigateToMainPage();
     }
 }

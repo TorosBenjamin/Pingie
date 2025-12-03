@@ -12,8 +12,10 @@ public class PingResultService(PingResultRepository repository)
         await repository.InsertAsync(pingResult);
     }
 
-    public async Task<List<PingResult>> GetAllPingResultByPingableId(long pingableId)
+    public double GetAvgResponseTime(long pingableId) => repository.GetAveragePingResultResponseTime(pingableId);
+
+    public async Task<List<PingResult>> GetAllPingResultByPingableId(long pingableId, int offset, int limit)
     {
-        return await repository.GetAllAsyncByPingableIds([pingableId]);
+        return await repository.GetAllAsyncByPingableIds([pingableId], offset, limit);
     }
 }

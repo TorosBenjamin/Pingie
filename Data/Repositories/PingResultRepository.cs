@@ -17,8 +17,21 @@ public class PingResultRepository(AppDbContext dbContext)
         return entry.Entity;
     }
 
-    public async Task<List<PingResult>> GetAllAsyncByPingableIds(List<long> pingableIds)
+    public double GetAveragePingResultResponseTime(long pingableId)
     {
-        return await _pingResults.Where(p => pingableIds.Contains(p.PingableId)).ToListAsync();
+        return _pingResults
+            .Where(p => p.PingableId == pingableId)
+            .Select(p => p.ResponseTime)
+            .Average() ?? -1;
+    }
+
+    public async Task<List<PingResult>> GetAllAsyncByPingableIds(List<long> pingableIds, int offset, int limit)
+    {
+        return await _pingResults
+            .Where(p => pingableIds.Contains(p.PingableId))
+            .OrderBy(p => p.Id)
+            .Skip(offset)
+            .Take(limit)
+            .ToListAsync();
     }
 }

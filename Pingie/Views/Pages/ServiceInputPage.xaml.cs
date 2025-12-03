@@ -75,6 +75,6 @@ public partial class ServiceInputPage : ContentView
             PingInterval = pingInterval.NotNull()
         };
         await _serviceService.SaveAsync(service);
-        await _navigation.NavigateToMainPage();
+        _navigation.NavigateToMainPage();
     }
 }

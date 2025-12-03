@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:contol="clr-namespace:Pingie.Maui.Views.Control"
              xmlns:view="clr-namespace:Pingie.Maui.Views.Pages"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Name="MainPageRef"
              x:Class="Pingie.Maui.Views.Pages.MainPage">
-    <ScrollView>
+    <ScrollView
+        VerticalScrollBarVisibility="Never"
+        HorizontalScrollBarVisibility="Never">
         <VerticalStackLayout
             Padding="10, 0"
             Spacing="10">
@@ -17,13 +21,19 @@
                             SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid x:Name="DeviceGrid">
+                            <Grid.Behaviors>
+                                <toolkit:TouchBehavior
+                                    LongPressCommand="{Binding EnterEditModeCommand, Source={x:Reference MainPageRef}}"
+                                    BindingContext="{Binding .}"
+                                    LongPressCommandParameter="{Binding Source={x:Reference DeviceGrid}, Path=BindingContext}"/>
+                            </Grid.Behaviors>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer 
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type view:MainPage}}, Path=BindingContext.DeviceTappedCommand}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type view:MainPage}}, Path=DeviceTappedCommand}"
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
-                            <contol:DeviceCard />
+                            <contol:PingableCard />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -33,6 +43,25 @@
                    FontSize="24"
                    TextColor="{DynamicResource PrimaryText}"
                    FontAttributes="Bold"/>
+                <CollectionView ItemsSource="{Binding Services}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.Behaviors>
+                                    <toolkit:TouchBehavior
+                                        LongPressCommand="{Binding EnterEditModeCommand, Source={x:Reference MainPageRef}}" 
+                                        LongPressCommandParameter="{Binding .}"/>
+                                </Grid.Behaviors>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type view:MainPage}}, Path=ServiceTappedCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+                                <contol:PingableCard/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentView>

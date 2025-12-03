@@ -20,6 +20,11 @@ public class DeviceService(DeviceRepository deviceRepository) : IPingableService
     {
         return await deviceRepository.GetAllAsync();
     }
+
+    public async Task<bool> DeleteAsync(Device device)
+    {
+        return await deviceRepository.DeleteAsync(device);
+    }
     
     public static async Task<PingResult> Ping(Device device)
     {

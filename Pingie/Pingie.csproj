@@ -29,6 +29,18 @@
     <EmbeddedResource Include="Resources\Images\Icons\downarrowselector.svg" />
     <None Remove="Resources\Images\Icons\backarrowselector.svg" />
     <EmbeddedResource Include="Resources\Images\Icons\backarrowselector.svg" />
+    <None Remove="Resources\Images\Icons\logs.svg" />
+    <EmbeddedResource Include="Resources\Images\Icons\logs.svg" />
+    <None Remove="Resources\Images\Icons\edit.svg" />
+    <EmbeddedResource Include="Resources\Images\Icons\edit.svg" />
+    <None Remove="Resources\Images\Icons\trash.svg" />
+    <EmbeddedResource Include="Resources\Images\Icons\trash.svg" />
+    <None Remove="Resources\Images\Icons\resume.svg" />
+    <EmbeddedResource Include="Resources\Images\Icons\resume.svg" />
+    <None Remove="Resources\Images\Icons\pause.svg" />
+    <EmbeddedResource Include="Resources\Images\Icons\pause.svg" />
+    <None Remove="Resources\Images\Icons\share.svg" />
+    <EmbeddedResource Include="Resources\Images\Icons\share.svg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Maui" Version="12.2.0" />
@@ -57,7 +69,10 @@
     <MauiXaml Update="Views\Pages\PingableLogPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
-    <MauiXaml Update="Views\Pages\DevicePage.xaml">
+    <MauiXaml Update="Views\Pages\DeviceDetailPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\PopUps\MainFlyoutSelectionBar.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
   </ItemGroup>
@@ -74,8 +89,12 @@
       <DependentUpon>PingableLogPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Pages\DevicePage.xaml.cs">
+    <Compile Update="Views\Pages\DeviceDetailPage.xaml.cs">
       <DependentUpon>DevicePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\PopUps\MainFlyoutSelectionBar.xaml.cs">
+      <DependentUpon>MainFlyoutSelectionBar.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

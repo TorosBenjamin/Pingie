@@ -1,8 +1,8 @@
 namespace Pingie.Maui.Views.Control;
 
-public partial class DeviceCard : ContentView
+public partial class PingableCard : ContentView
 {
-    public DeviceCard()
+    public PingableCard()
     {
         InitializeComponent();
     }
