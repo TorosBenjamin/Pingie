@@ -21,15 +21,10 @@ public partial class MainPage : ContentView
     
     public bool IsEditMode { get; private set; } = false;
     
-    public ICommand DeviceTappedCommand { get; }
-    public ICommand ServiceTappedCommand { get; }
-    
     public MainPage(NavigationService navigation )
     {
         _navigation = navigation;
         InitializeComponent();
-        DeviceTappedCommand = new Command<Device>(OnDeviceTapped);
-        ServiceTappedCommand = new Command<Service>(OnServiceTapped);
     }
     
     [RelayCommand]
@@ -37,39 +32,43 @@ public partial class MainPage : ContentView
     {
         if (IsEditMode) return;
         IsEditMode = true;
-        var selectPopUp = ServiceHelper.GetService<MainFlyoutSelectionBar>();
+        FlyoutSelectionBar.IsVisible = true;
         var vm = (MainViewModel)BindingContext;
         vm.SelectedItem = pingable;
-        selectPopUp.SelectedItem = vm.SelectedItem;
-        selectPopUp.MainPage = this;
-        await MopupService.Instance.PushAsync(selectPopUp);
+        FlyoutSelectionBar.SelectedItem = vm.SelectedItem;
+        FlyoutSelectionBar.MainViewModel = ViewModel;
+        FlyoutSelectionBar.DoneEditMode = () => DoneEditMode();
     }
 
     public async void DoneEditMode()
     {
         if(!IsEditMode) return;
         IsEditMode = false;
-        await MopupService.Instance.PopAllAsync();
+        ViewModel.SelectedItem = null;
+        FlyoutSelectionBar.IsVisible = false;
     }
-
-    private async void OnServiceTapped(Service service)
+    
+    
+    [RelayCommand]
+    private async Task OnServiceTapped(Pingable service)
     {
         if(service == null) return;
         if (!IsEditMode)
         {
-            await _navigation.NavigateToServiceInputPage(service);
+            await _navigation.NavigateToServiceInputPage((Service)service);
         } else
         {
             ViewModel.SelectedItem = service;
         }
     }
     
-    private async void OnDeviceTapped(Device device)
+    [RelayCommand]
+    private async Task OnDeviceTapped(Pingable device)
     {
         if (device == null) return;
         if(!IsEditMode)
         {
-            await _navigation.NavigateToDeviceDetailPage(device);
+            await _navigation.NavigateToDeviceDetailPage((Device)device);
         }
         else
         {

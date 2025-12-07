@@ -28,7 +28,7 @@
                 </Label>
                 <controls:ValidatableEntry x:Name="NameEntry" 
                                            Grid.Row="1"
-                                           Text="{Binding Name}" 
+                                           Text="{Binding Name, Mode=TwoWay}" 
                                            Placeholder="laptop">
                     <controls:ValidatableEntry.ValidationAndErrors>
                         <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.IsNotEmpty}" Error="Name is required." />
@@ -48,7 +48,7 @@
                 </Label>
                 <controls:ValidatableEntry x:Name="HostNameEntry" 
                                            Grid.Row="1"
-                                           Text="{Binding Name}" 
+                                           Text="{Binding HostName, Mode=TwoWay}" 
                                            Placeholder="192.168.0.0">
                     <controls:ValidatableEntry.ValidationAndErrors>
                         <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.IsNotEmpty}" Error="Ip address is required." />

@@ -17,6 +17,13 @@ public class DeviceRepository(AppDbContext dbContext)
         return entry.Entity;
     }
 
+    public async Task<Device> UpdateAsync(Device device)
+    {
+        var entity = _devices.Update(device);
+        await dbContext.SaveChangesAsync();
+        return entity.Entity;
+    }
+
     public async Task<bool> DeleteAsync(Device device)
     {
         try

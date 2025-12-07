@@ -1,5 +1,6 @@
 using Pingie.Data.Services;
 using Pingie.Maui.Utils;
+using Pingie.Maui.ViewModels;
 using Pingie.Shared.Utils;
 using Device = Pingie.Data.Models.Device;
 
@@ -55,13 +56,25 @@ public partial class DeviceInputPage : ContentView
         var hostName = HostNameEntry.Text;
         if(string.IsNullOrEmpty(hostName)) return;
 
-        var device = new Device()
+        var vm = (DeviceInputViewModel)BindingContext;
+        if (vm.Device != null)
         {
-            Name = name, 
-            Hostname = hostName, 
-            PingInterval = NullExtensions.NotNull(pingInterval)
-        };
-        await _deviceService.SaveAsync(device);
+            vm.Device.Name = name;
+            vm.Device.Hostname = hostName;
+            vm.Device.PingInterval = pingInterval.NotNull();
+            await _deviceService.UpdateAsync(vm.Device);
+        }
+        else
+        {
+            var device = new Device()
+            {
+                Name = name, 
+                Hostname = hostName, 
+                PingInterval = pingInterval.NotNull()
+            };
+            await _deviceService.SaveAsync(device); 
+        }
+
         _navigation.NavigateToMainPage();
     }
 }

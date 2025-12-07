@@ -22,6 +22,7 @@ public class MonitorService
         
         async Task HandlePingResult(PingResult result)
         {
+            if (result.Status != null) pingable.Status = result.Status.NotNull();
             // Create new scope for the dbContext
             using (var scope = _serviceProvider.CreateScope())
             {

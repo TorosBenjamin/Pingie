@@ -18,9 +18,10 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Ignore<Pingable>();
-        modelBuilder.Entity<Service>().ToTable("Services");
-        modelBuilder.Entity<Device>().ToTable("Devices");
+        modelBuilder.Entity<Pingable>()
+            .HasDiscriminator<string>("PingableType")
+            .HasValue<Device>("Device")
+            .HasValue<Service>("Service");
     }
 
     public AppDbContext(DbContextOptions<AppDbContext> options)

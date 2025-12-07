@@ -12,6 +12,7 @@ public class PingResultRepository(AppDbContext dbContext)
     
     public async Task<PingResult> InsertAsync(PingResult pingResult)
     {
+        dbContext.Attach(pingResult.Pingable);
         var entry = await _pingResults.AddAsync(pingResult);
         await dbContext.SaveChangesAsync();
         return entry.Entity;
@@ -32,6 +33,7 @@ public class PingResultRepository(AppDbContext dbContext)
             .OrderBy(p => p.Id)
             .Skip(offset)
             .Take(limit)
+            .Include(p => p.Pingable)
             .ToListAsync();
     }
 }

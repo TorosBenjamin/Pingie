@@ -48,7 +48,7 @@
                 </Label>
                 <controls:ValidatableEntry x:Name="IpAddressEntry" 
                                            Grid.Row="1"
-                                           Text="{Binding Name}" 
+                                           Text="{Binding Hostname}" 
                                            Placeholder="192.168.0.0">
                     <controls:ValidatableEntry.ValidationAndErrors>
                         <utils:ValidationErrorRule Validator="{x:Static utils:StringValidators.IsNotEmpty}" Error="Ip address is required." />

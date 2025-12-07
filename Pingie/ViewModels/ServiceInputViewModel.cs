@@ -8,17 +8,11 @@ namespace Pingie.Maui.ViewModels;
 #nullable enable
 public partial class ServiceInputViewModel : PingableInputViewModel
 {
-    [ObservableProperty] private string? _ipAddress = null;
     [ObservableProperty] private int? _port = null;
     [ObservableProperty] private string? _url = null;
     
     
     [ObservableProperty] private List<String> _pingIntervalSelectorOptions;
-    
-    public async override Task SaveChanges()
-    {
-        
-    }
 
     public ServiceInputViewModel()
     {
@@ -30,7 +24,7 @@ public partial class ServiceInputViewModel : PingableInputViewModel
         if(service == null) return;
         
         Name = service.Name;
-        IpAddress = service.Hostname;
+        HostName = service.Hostname;
         PingInterval = service.PingInterval;
         Port = service.Port;
         Url = service.Url;

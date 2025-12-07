@@ -106,5 +106,8 @@
   <ItemGroup>
       <MauiIcon Include="Resources\AppIcon\pingieiconfg.svg" Color="#FFad1a5e"/>
   </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="Resources\Converters\Converters.xaml" />
+  </ItemGroup>
 </Project>
 

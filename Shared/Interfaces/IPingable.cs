@@ -6,6 +6,7 @@ public interface IPingable
 {
     long Id { get; }
     string Name { get; set; }
+    string Hostname { get; set; }
     int PingInterval {get; set;}
     PingStatus Status {get; set;}
 }

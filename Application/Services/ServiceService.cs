@@ -21,6 +21,11 @@ public class ServiceService(ServiceRepository serviceRepository) : IPingableServ
     {
         return await serviceRepository.SaveAsync(service);
     }
+
+    public async Task<Service> UpdateAsync(Service service)
+    {
+        return await serviceRepository.UpdateAsync(service);
+    }
     
     public async Task<bool> DeleteAsync(Service service)
     {

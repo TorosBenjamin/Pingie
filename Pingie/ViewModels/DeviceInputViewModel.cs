@@ -10,15 +10,9 @@ namespace Pingie.Maui.ViewModels;
 public partial class DeviceInputViewModel : PingableInputViewModel
 {
     private readonly DeviceService _deviceService = ServiceHelper.GetService<DeviceService>();
-    
-    [ObservableProperty] private string? _ipAddress = null;
+    public Device? Device { get;  private set; }
 
     [ObservableProperty] private List<String> _pingIntervalSelectorOptions;
-    
-    public async override Task SaveChanges()
-    {
-        
-    }
 
     public DeviceInputViewModel()
     {
@@ -28,9 +22,10 @@ public partial class DeviceInputViewModel : PingableInputViewModel
     public void Initialize(Device? device)
     {
         if(device == null) return;
+        Device = device;
         
         Name = device.Name;
-        IpAddress = device.Hostname;
+        HostName = device.Hostname;
         PingInterval = device.PingInterval;
     }
 }

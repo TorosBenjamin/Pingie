@@ -17,6 +17,13 @@ public class ServiceRepository(AppDbContext dbContext)
         return entry.Entity;
     }
 
+    public async Task<Service> UpdateAsync(Service service)
+    {
+        var entry = _services.Update(service);
+        await dbContext.SaveChangesAsync();
+        return entry.Entity;
+    }
+
     public async Task<bool> DeleteAsync(Service service)
     {
         try

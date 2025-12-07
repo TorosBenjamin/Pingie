@@ -48,8 +48,9 @@ public class NavigationService
     public async Task NavigateToServiceInputPage(Service? service)
     {
         var page = ServiceHelper.GetService<ServiceInputPage>();
-        var viewMode = ServiceHelper.GetService<ServiceInputViewModel>();
-        viewMode.Initialize(service);
+        var viewModel = ServiceHelper.GetService<ServiceInputViewModel>();
+        viewModel.Initialize(service);
+        page.BindingContext = viewModel;
         BasePage.CurrentPageContent = page;
         _pageStack.Push(page);
     }

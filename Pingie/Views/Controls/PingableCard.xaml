@@ -2,17 +2,22 @@
 
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:Pingie.Data.Models;assembly=Data"
-             xmlns:control="clr-namespace:Pingie.Maui.Views.Control"
-             x:Class="Pingie.Maui.Views.Control.PingableCard">
+             xmlns:control="clr-namespace:Pingie.Maui.Views.Controls"
+             xmlns:util="clr-namespace:Pingie.Data.Models.Util;assembly=Data"
+             x:Class="Pingie.Maui.Views.Controls.PingableCard">
     
-    <Border x:DataType="model:Device"
+    <Border x:DataType="util:Pingable"
             StrokeShape="RoundRectangle 8"
             Padding="10">
         
+        <Border.Stroke>
+            <Binding Path="IsSelected"
+                     Source="{RelativeSource AncestorType={x:Type control:PingableCard}}"
+                     Converter="{StaticResource SelectedBorderColorConverter}" />
+        </Border.Stroke>
+        
         <Grid ColumnDefinitions="Auto, *,Auto" RowDefinitions="Auto, Auto" 
               RowSpacing="10">
-            
             <control:PingStatusBadge 
                 Grid.Row="0" Grid.Column="0"
                 Status="{Binding Status}"

@@ -21,6 +21,11 @@ public class DeviceService(DeviceRepository deviceRepository) : IPingableService
         return await deviceRepository.GetAllAsync();
     }
 
+    public async Task<Device> UpdateAsync(Device device)
+    {
+        return await deviceRepository.UpdateAsync(device);
+    }
+
     public async Task<bool> DeleteAsync(Device device)
     {
         return await deviceRepository.DeleteAsync(device);

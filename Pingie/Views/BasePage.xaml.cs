@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Behaviors;
 using CommunityToolkit.Maui.Core;
 using Pingie.Interfaces;
@@ -49,11 +50,34 @@ public partial class BasePage : ContentPage, IBasePage
         ChangeNavigationBarColor(Color.FromArgb("#121212"));
         ChangeStatusBarColor(Color.FromArgb("#1e1e1e"));
         InitializeComponent();
+        Connectivity.ConnectivityChanged += OnConnectivityChanged;
         BindingContext = this;
         navigation.BasePage = this;
         _navigation = navigation;
-
         navigation.NavigateToMainPage();
+    }
+    
+    private bool _showingError = false;
+    private async void OnConnectivityChanged(object? sender, ConnectivityChangedEventArgs e)
+    {
+        if (e.NetworkAccess != NetworkAccess.Internet)
+        {
+            if (!_showingError)
+            {
+                _showingError = true;
+
+                var toast = Toast.Make(
+                    "No internet connection",
+                    ToastDuration.Long);
+
+                await toast.Show();
+            }
+        }
+        else
+        {
+            // Reset flag so next time it fires again
+            _showingError = false;
+        }
     }
 
     public void ChangeNavigationBarColor(Color color)

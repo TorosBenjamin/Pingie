@@ -58,10 +58,8 @@ public partial class ServiceInputPage : ContentView
         if(string.IsNullOrEmpty(name)) return;
         
         var hostName = IpAddressEntry.Text;
-        if(string.IsNullOrEmpty(hostName)) return;
-
         var url = UrlEntry.Text;
-        if(string.IsNullOrEmpty(url)) return;
+        if(string.IsNullOrEmpty(url) && string.IsNullOrEmpty(hostName)) return;
 
         // Change port entry to number entry
         if (!int.TryParse(PortEntry.Text, out var port)) return;

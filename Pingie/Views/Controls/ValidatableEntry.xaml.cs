@@ -17,7 +17,14 @@ public partial class ValidatableEntry : ContentView
             typeof(ValidatableEntry));
     
     public static readonly BindableProperty TextProperty =
-        BindableProperty.Create(nameof(Text), typeof(string), typeof(ValidatableEntry), default(string), propertyChanged: OnTextChanged);
+        BindableProperty.Create(
+            nameof(Text),
+            typeof(string),
+            typeof(ValidatableEntry),
+            default(string),
+            BindingMode.TwoWay,
+            propertyChanged: OnTextChanged);
+
 
     public static readonly BindableProperty ValidationErrorsProperty =
         BindableProperty.Create(nameof(ValidationAndErrors), typeof(List<ValidationErrorRule>), typeof(ValidatableEntry), new List<ValidationErrorRule>());
@@ -62,6 +69,5 @@ public partial class ValidatableEntry : ContentView
     public ValidatableEntry()
     {
         InitializeComponent();
-        BindingContext = this;
     }
 }

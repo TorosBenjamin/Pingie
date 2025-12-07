@@ -1,8 +1,10 @@
+using System.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mopups.Pages;
 using Mopups.Services;
 using Pingie.Data.Models.Util;
 using Pingie.Maui.Utils;
+using Pingie.Maui.ViewModels;
 using Pingie.Maui.Views.Pages;
 using Pingie.Shared.Enums;
 using Pingie.Shared.Utils;
@@ -11,14 +13,15 @@ using Service = Pingie.Data.Models.Service;
 
 namespace Pingie.Maui.Views.Controls;
 
-[Transient]
-public partial class MainFlyoutSelectionBar : PopupPage
+public partial class MainFlyoutSelectionBar : ContentView
 {
-    public MainPage MainPage { get; set; }
+    public Action DoneEditMode {get; set;}
+    public MainViewModel MainViewModel {get; set;}
     
-    private readonly NavigationService _navigation;
+    
+    private NavigationService Navigation => ServiceHelper.GetService<NavigationService>();
     public static readonly BindableProperty SelectedItemProperty =
-        BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(MainFlyoutSelectionBar), propertyChanged: OnSelectedItemChanged);
+        BindableProperty.Create(nameof(SelectedItem), typeof(Pingable), typeof(MainFlyoutSelectionBar), propertyChanged: OnSelectedItemChanged);
     
     public static readonly BindableProperty OnDeleteTappedCommandProperty =
         BindableProperty.Create(nameof(OnDeleteTappedCommand), typeof(IRelayCommand), typeof(MainFlyoutSelectionBar));
@@ -35,9 +38,9 @@ public partial class MainFlyoutSelectionBar : PopupPage
     public static readonly BindableProperty IsPausedProperty =
         BindableProperty.Create(nameof(IsPaused), typeof(bool), typeof(MainFlyoutSelectionBar), default(bool));
     
-    public object SelectedItem
+    public Pingable SelectedItem
     {
-        get => GetValue(SelectedItemProperty);
+        get => (Pingable)GetValue(SelectedItemProperty);
         set => SetValue(SelectedItemProperty, value);
     }
 
@@ -71,14 +74,14 @@ public partial class MainFlyoutSelectionBar : PopupPage
         set => SetValue(IsPausedProperty, value);
     }
     
-    public MainFlyoutSelectionBar(NavigationService navigation)
+    public MainFlyoutSelectionBar()
     {
-        _navigation = navigation;
         InitializeComponent();
         BindingContext = this;
         OnEditTappedCommand = new RelayCommand(OnEditTapped);
         OnShareTappedCommand = new RelayCommand(OnShareTapped);
         OnDeleteTappedCommand = new RelayCommand(OnDeleteTapped);
+        OnResumeTappedCommand = new RelayCommand(OnResumeTapped);
     }
 
     private async void OnEditTapped()
@@ -88,24 +91,24 @@ public partial class MainFlyoutSelectionBar : PopupPage
             case null:
                 return;
             case Device device:
-                await _navigation.NavigateToDeviceInputPage(device);
+                await Navigation.NavigateToDeviceInputPage(device);
                 break;
             case Service service:
-                await _navigation.NavigateToServiceInputPage(service);
+                await Navigation.NavigateToServiceInputPage(service);
                 break;
             default:
                 throw new ArgumentException("Wtf happened?!");
         }
         
-        MainPage.DoneEditMode();
+        DoneEditMode();
     }
 
     private async void OnDeleteTapped()
     {
         if (SelectedItem is null || SelectedItem is not Pingable) return;
         var pingable = SelectedItem as Pingable;
-        await MainPage.ViewModel.Delete(pingable);
-        MainPage.DoneEditMode();
+        await MainViewModel.Delete(pingable);
+        DoneEditMode();
     }
 
     private async void OnShareTapped()
@@ -118,20 +121,67 @@ public partial class MainFlyoutSelectionBar : PopupPage
         var text = $"{pingable.Name} - {pingable.Hostname} - {pingable.Status}";
         
         await Share.Default.RequestAsync(new ShareTextRequest(title, text));
-        MainPage.DoneEditMode();
+        DoneEditMode();
+    }
+
+    private async void OnResumeTapped()
+    {
+        if (SelectedItem is null || SelectedItem is not Pingable) return;
+        var pingable = SelectedItem as Pingable;
+        if(pingable == null) return;
+        // IsPaused should update because the monitor service sets it to pause
+        // The Svg image source and text should also change.
+        if (IsPaused)
+        {
+            MainViewModel.StartMonitoring(pingable);
+            IsPaused = false;
+        } else
+        {
+            MainViewModel.PauseMonitoring(pingable);
+            IsPaused = true;
+        }
     }
 
     private static void OnSelectedItemChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        if (bindable is MainFlyoutSelectionBar bar && newValue is Pingable pingable)
+        if (bindable is not MainFlyoutSelectionBar bar) return;
+
+        // Unsubscribe from the previous pingable
+        if (bar.SelectedItem != null)
+            bar.SelectedItem.PropertyChanged -= bar.OnPingablePropertyChanged;
+        
+        bar.SelectedItem = newValue as Pingable;
+
+        // Subscribe to the new pingable
+        if (bar.SelectedItem != null)
+            bar.SelectedItem.PropertyChanged += bar.OnPingablePropertyChanged;
+        
+        bar.UpdatePauseState();
+    }
+
+    private void OnPingablePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(Pingable.Status))
         {
-            bar.IsPaused = pingable.Status == PingStatus.Paused;
+            UpdatePauseState();
         }
     }
-    
-    protected override bool OnBackButtonPressed()
+    private void UpdatePauseState()
     {
-        MainPage.DoneEditMode();        
-        return true;
+        if (SelectedItem != null)
+            IsPaused = SelectedItem.Status == PingStatus.Paused;
+    }
+    
+    private void Show()
+    {
+        IsVisible = true;
+        this.TranslateTo(0, 0, 250, Easing.SinOut);
+    }
+
+    public async void Hide()
+    {
+        await this.TranslateTo(0, 300, 250, Easing.SinIn);
+        IsVisible = false;
+        DoneEditMode?.Invoke();
     }
 }

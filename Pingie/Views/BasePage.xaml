@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:Pingie.Maui.Views"
-             xmlns:droid="clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui"
+             xmlns:controls="clr-namespace:Pingie.Maui.Views.Controls"
              x:Class="Pingie.Maui.Views.BasePage">
     
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*, Auto">
         <ContentView Grid.Row="0"
                      Content="{x:Static views:BasePage.NavigationBar}"
                      ZIndex="2"/>

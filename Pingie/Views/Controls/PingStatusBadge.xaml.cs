@@ -2,7 +2,7 @@
 
 using Pingie.Shared.Enums;
 
-namespace Pingie.Maui.Views.Control;
+namespace Pingie.Maui.Views.Controls;
 
 public partial class PingStatusBadge : ContentView
 {
@@ -23,6 +23,7 @@ public partial class PingStatusBadge : ContentView
     public PingStatusBadge()
     {
         InitializeComponent();
+        UpdateVisual();
     }
 
     public static void OnStatusChanged(BindableObject bindable, object oldValue, object newValue)

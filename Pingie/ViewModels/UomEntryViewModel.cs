@@ -36,12 +36,12 @@ public partial class UomEntryViewModel
         IsPickerOpen = true;
         var selector = new PickerPopUp(SelectorOptions.ToList(), CurrentItem);
 
-        var postion = anchor.GetAbsolutePosition();
+        var position = anchor.GetAbsolutePosition();
         selector.IsAnimationEnabled = false;
         selector.Content.VerticalOptions = LayoutOptions.Start;
         selector.Content.HorizontalOptions = LayoutOptions.Start;
         
-        selector.Content.Margin = new Thickness(postion.X, postion.Y + 45, 0, 0);
+        selector.Content.Margin = new Thickness(position.X, position.Y + 45, 0, 0);
 
         selector.ViewModel.OnItemSelected = (selectedItem) =>
         {

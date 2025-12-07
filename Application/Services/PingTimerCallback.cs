@@ -12,6 +12,7 @@ namespace Pingie.Data.Services;
 
 public class PingTimerCallback
 {
+    private bool _isStopped = true;
     private readonly Timer _timer = new Timer();
     private readonly Pingable _pingable;
     private readonly Func<Task<PingResult>> _ping;
@@ -31,18 +32,21 @@ public class PingTimerCallback
 
     public void StartPinging()
     {
+        _isStopped = false;
         OnTimerElapsed(null, null);
         _timer.Start();
     }
 
     public void StopPinging()
     {
+        _isStopped = true;
         _timer.Stop();
         _pingable.Status = PingStatus.Paused;
     }
 
     private async void OnTimerElapsed(object sender, ElapsedEventArgs e)
     {
+        if(_isStopped) return;
         var result = await _ping.Invoke();
         await _onPingResult(result); // Invoke the callback
     }

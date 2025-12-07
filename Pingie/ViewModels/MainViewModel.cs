@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Pingie.Data.Models;
 using Pingie.Data.Models.Util;
 using Pingie.Data.Services;
@@ -12,13 +13,14 @@ namespace Pingie.Maui.ViewModels;
 
 [Transient]
 [ObservableObject]
+#nullable enable
 public partial class MainViewModel
 {
     private readonly MonitorService _monitor;
     private readonly DeviceService _deviceService;
     private readonly ServiceService _serviceService;
 
-    [ObservableProperty] private Pingable _selectedItem;
+    [ObservableProperty] private Pingable? _selectedItem;
     
     public ObservableCollection<Pingable> Devices { get; } = [];
 
@@ -42,16 +44,30 @@ public partial class MainViewModel
         {
             case null: return;
             case Service service:
-                if (await _serviceService.DeleteAsync(service)) 
+                _monitor.StopMonitoring(service);
+                if (await _serviceService.DeleteAsync(service))
                     Services.Remove(service);
+                else _monitor.StartMonitoring(service);
                 break;
             case Device device:
+                _monitor.StopMonitoring(device);
                 if(await _deviceService.DeleteAsync(device))
                     Devices.Remove(device);
+                else _monitor.StartMonitoring(device);
                 break;
             default:
                 throw new ArgumentException("How did we get here?");
         }
+    }
+
+    public void PauseMonitoring(Pingable pingable)
+    {
+        _monitor.StopMonitoring(pingable);
+    }
+
+    public void StartMonitoring(Pingable pingable)
+    {
+        _monitor.StartMonitoring(pingable);
     }
     
     private async Task LoadAllDevicesAndServicesAsync()
